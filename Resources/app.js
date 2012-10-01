@@ -1,5 +1,5 @@
 
-var Mods = require('modules');
+var Mods = require('/modules');
 
 (function() {
 	

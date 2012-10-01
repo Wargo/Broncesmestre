@@ -1,7 +1,24 @@
 
 module.exports = {
 	
+	/*
+	 * Windows
+	 */
 	home: '/ui/home',
-	styles: '/ui/styles/ipad'
+	
+	/*
+	 * Styles
+	 */
+	styles: '/ui/styles/ipad',
+	
+	/*
+	 * Elements
+	 */
+	homeSection: '/ui/elements/homeSection',
+	
+	/*
+	 * BBDD
+	 */
+	bbdd: '/bbdd'
 	
 }
