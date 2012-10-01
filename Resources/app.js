@@ -1,8 +1,10 @@
 
-var Mods = require('/modules');
+var Mods = require('modules');
 
 (function() {
 	
-	require(Mods.homeWindow).open();
+	var MyWin = require(Mods.home);
+	
+	MyWin().open();
 	
 })();

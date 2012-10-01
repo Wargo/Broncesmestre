@@ -1,7 +1,7 @@
 
 module.exports = {
 	
-	homeWindow: '/ui/home',
+	home: '/ui/home',
 	styles: '/ui/styles/ipad'
 	
 }
