@@ -53,9 +53,13 @@ module.exports = function(subcategories, f_callback, width) {
 		
 		tableView.appendRow(row);
 		
+		row._current = subcategories[i]
+		
 		row.addEventListener('click', function(e) {
 			
-			f_callback(subcategories[i]);
+			if (f_callback) {
+				f_callback(e.row._current);
+			}
 			
 		});
 		

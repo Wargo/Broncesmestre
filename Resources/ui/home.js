@@ -57,11 +57,15 @@ module.exports = function() {
 			backgroundColor:'#000'
 		});
 		
+		miniMenu.add(Ti.UI.createLabel({text:'Volver', color:'white', font:{fontSize:20}}));
+		
 		miniMenu.addEventListener('click', function() {
 			scrollView.animate({opacity:1, duration:duration});
 			win.remove(miniMenu);
 			win.remove(newWin);
-			win.remove(otherWin);
+			if (otherWin) {
+				win.remove(otherWin);
+			}
 		})
 		
 		var newWin = MyView(subcategories, openSubcategory, 200);
@@ -77,6 +81,10 @@ module.exports = function() {
 	function openSubcategory(subcategory) {
 		var aux = [];
 		aux.push(subcategory);
+		
+		if (otherWin) {
+			win.remove(otherWin);
+		}
 		
 		otherWin = MyView(aux, null, 400);
 		
