@@ -23,15 +23,26 @@ module.exports = function() {
 	
 	scrollView.add(broncesmestre);
 	
+	var bgImages = [];
+	bgImages.push(broncesmestre._image);
+	
 	for (i in data.categories) {
 		
 		var section = MySection(data.categories[i]);
 		
 		scrollView.add(section);
 		
+		bgImages.push(section._image);
+		
 	}
 	
 	win.add(scrollView);
+	
+	scrollView.addEventListener('scroll', function(e) {
+		for (i in bgImages) {
+			bgImages[i].left = -100 + e.x / 10;
+		}
+	});
 	
 	return win;
 	
