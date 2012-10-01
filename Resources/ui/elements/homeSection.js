@@ -3,11 +3,11 @@ module.exports = function(category) {
 	
 	if (!category) {
 		var category = new Object;
-		category.title = 'Broncesmestre';
+		category.name = 'Broncesmestre';
 	}
 	
 	var view = Ti.UI.createView({
-		width:250,
+		width:300,
 		borderColor:'#333',
 		borderWidth:5
 	});
@@ -20,7 +20,10 @@ module.exports = function(category) {
 	});
 	
 	var title = Ti.UI.createLabel({
-		text:category.title
+		text:category.name,
+		bottom:20,
+		font:{fontSize:22},
+		color:'#FFF'
 	});
 	
 	view.add(titleView);

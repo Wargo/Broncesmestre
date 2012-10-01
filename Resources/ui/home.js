@@ -23,13 +23,15 @@ module.exports = function() {
 	
 	scrollView.add(broncesmestre);
 	
-	for (i in data) {
+	for (i in data.categories) {
 		
 		var section = MySection(data.categories[i]);
 		
 		scrollView.add(section);
 		
 	}
+	
+	win.add(scrollView);
 	
 	return win;
 	
