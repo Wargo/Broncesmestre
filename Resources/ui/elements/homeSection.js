@@ -11,7 +11,8 @@ module.exports = function(category, f_callback) {
 	var view = Ti.UI.createView({
 		width:310,
 		borderColor:'#333',
-		borderWidth:5
+		borderWidth:5,
+		backgroundColor:'#FFF'
 	});
 	
 	var image = Ti.UI.createImageView({
