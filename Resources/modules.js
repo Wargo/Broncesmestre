@@ -5,6 +5,7 @@ module.exports = {
 	 * Windows
 	 */
 	home: '/ui/home',
+	view: '/ui/view',
 	
 	/*
 	 * Styles

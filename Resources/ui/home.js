@@ -53,10 +53,8 @@ module.exports = function() {
 			backgroundColor:'#000'
 		});
 		
-		var newWin = Ti.UI.createView({
-			backgroundColor:'#FFF',
-			left:Ti.Platform.displayCaps.platformWidth - 1
-		});
+		var MyView = require(Mods.view);
+		var newWin = MyView(id);
 		
 		win.add(miniMenu);
 		win.add(newWin);
