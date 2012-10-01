@@ -41,11 +41,11 @@ module.exports = function(category, f_callback) {
 	view.add(title);
 	
 	view._image = image;
-	view._id = category.id;
+	view._subcategories = category.subcategories;
 	
 	view.addEventListener('singletap', function(e) {
 		
-		f_callback(e.id);
+		f_callback(e._subcategories);
 		
 	});
 	

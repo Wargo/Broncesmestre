@@ -44,7 +44,7 @@ module.exports = function() {
 		}
 	});
 	
-	function openCategory(id) {
+	function openCategory(subcategories) {
 		
 		var miniMenu = Ti.UI.createView({
 			width:50,
@@ -54,7 +54,7 @@ module.exports = function() {
 		});
 		
 		var MyView = require(Mods.view);
-		var newWin = MyView(id);
+		var newWin = MyView(subcategories);
 		
 		win.add(miniMenu);
 		win.add(newWin);
