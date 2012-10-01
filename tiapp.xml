@@ -36,9 +36,9 @@
             <orientation>Ti.UI.PORTRAIT</orientation>
         </orientations>
         <orientations device="ipad">
-            <orientation>Ti.UI.PORTRAIT</orientation>
+            <!--<orientation>Ti.UI.PORTRAIT</orientation>
             <orientation>Ti.UI.UPSIDE_PORTRAIT</orientation>
-            <orientation>Ti.UI.LANDSCAPE_LEFT</orientation>
+            <orientation>Ti.UI.LANDSCAPE_LEFT</orientation>-->
             <orientation>Ti.UI.LANDSCAPE_RIGHT</orientation>
         </orientations>
     </iphone>
@@ -52,6 +52,7 @@
         <theme>default</theme>
     </mobileweb>
     <modules>
+        <module platform="iphone" version="0.3">ti.viewshadow</module>
         <module platform="commonjs" version="2.0.5">ti.cloud</module>
     </modules>
 </ti:app>
