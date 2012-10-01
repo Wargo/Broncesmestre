@@ -1,10 +1,10 @@
 
-module.exports = function(category) {
+module.exports = function(category, f_callback) {
 	
 	if (!category) {
 		var category = new Object;
 		category.name = 'Broncesmestre';
-		category.num = 0;
+		category.id = category.num = 0;
 		category.image = 'http://broncesmestre.com/wp-content/themes/Bronces_Mestre/images/emes10.png';
 	}
 	
@@ -40,6 +40,13 @@ module.exports = function(category) {
 	view.add(title);
 	
 	view._image = image;
+	view._id = category.id;
+	
+	view.addEventListener('singletap', function(e) {
+		
+		f_callback(e.id);
+		
+	});
 	
 	return view;
 	

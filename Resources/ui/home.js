@@ -21,7 +21,7 @@ module.exports = function() {
 	
 	var broncesmestre = MySection(0);
 	
-	scrollView.add(broncesmestre);
+	scrollView.add(broncesmestre, openCategory);
 	
 	var bgImages = [];
 	bgImages.push(broncesmestre._image);
@@ -30,7 +30,7 @@ module.exports = function() {
 		
 		var section = MySection(data.categories[i]);
 		
-		scrollView.add(section);
+		scrollView.add(section, openCategory);
 		
 		bgImages.push(section._image);
 		
@@ -43,6 +43,22 @@ module.exports = function() {
 			bgImages[i].left = -100 + e.x / 10;
 		}
 	});
+	
+	function openCategory(id) {
+		
+		var miniMenu = Ti.UI.createView({
+			width:50,
+			left:-50,
+			backgroundColor:'#000'
+		});
+		
+		win.add(miniMenu);
+		
+		miniMenu.animate({left:0, delay:500});
+		
+		scrollView.animate({left:-2000, opacity:0});
+		
+	}
 	
 	return win;
 	
