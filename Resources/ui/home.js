@@ -5,7 +5,7 @@ var $$ = require(Mods.styles);
 
 module.exports = function() {
 	
-	var duration = 2000;
+	var duration = 300;
 	
 	var getData = require(Mods.bbdd);
 	var data = getData();
