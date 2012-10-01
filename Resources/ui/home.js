@@ -53,6 +53,12 @@ module.exports = function() {
 			backgroundColor:'#000'
 		});
 		
+		miniMenu.addEventListener('click', function() {
+			scrollView.animate({opacity:1, duration:duration});
+			win.remove(miniMenu);
+			win.remove(newWin);
+		})
+		
 		var MyView = require(Mods.view);
 		var newWin = MyView(subcategories);
 		

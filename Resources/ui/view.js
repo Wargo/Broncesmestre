@@ -6,7 +6,6 @@ module.exports = function(subcategories) {
 		left:Ti.Platform.displayCaps.platformWidth - 1
 	});
 	
-	alert(subcategories);
 	
 	return view;
 	

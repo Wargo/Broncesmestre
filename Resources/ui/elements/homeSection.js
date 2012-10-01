@@ -39,13 +39,12 @@ module.exports = function(category, f_callback) {
 	view.add(image);
 	view.add(titleView);
 	view.add(title);
-	
+
 	view._image = image;
-	view._subcategories = category.subcategories;
 	
 	view.addEventListener('singletap', function(e) {
 		
-		f_callback(e._subcategories);
+		f_callback(category.subcategories);
 		
 	});
 	
