@@ -44,10 +44,14 @@ module.exports = function() {
 		}
 	});
 	
+	var otherWin = null;
+	
+	var MyView = require(Mods.view);
+	
 	function openCategory(subcategories) {
 		
 		var miniMenu = Ti.UI.createView({
-			width:50,
+			width:200,
 			left:0,
 			opacity:0,
 			backgroundColor:'#000'
@@ -57,18 +61,26 @@ module.exports = function() {
 			scrollView.animate({opacity:1, duration:duration});
 			win.remove(miniMenu);
 			win.remove(newWin);
+			win.remove(otherWin);
 		})
 		
-		var MyView = require(Mods.view);
-		var newWin = MyView(subcategories);
+		var newWin = MyView(subcategories, openSubcategory, 200);
 		
 		win.add(miniMenu);
 		win.add(newWin);
 		
 		scrollView.animate({opacity:0, duration:duration});
 		miniMenu.animate({opacity:1, duration:duration});
-		newWin.animate({left:50, duration:duration});
 		
+	}
+	
+	function openSubcategory(subcategory) {
+		var aux = [];
+		aux.push(subcategory);
+		
+		otherWin = MyView(aux, null, 400);
+		
+		win.add(otherWin);
 	}
 	
 	return win;
