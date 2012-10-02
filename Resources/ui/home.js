@@ -8,6 +8,8 @@ module.exports = function() {
 	var getData = require(Mods.bbdd);
 	var data = getData();
 	
+	Ti.App.data = data;
+	
 	var win = Ti.UI.createWindow({
 		backgroundColor:'#000'
 	});
@@ -51,7 +53,7 @@ module.exports = function() {
 	
 	function openCategory(subcategories) {
 		
-		newWin = MyView(subcategories, openSubcategory, 200);
+		newWin = MyView(subcategories, openSubcategory, 200, false);
 		miniMenu = MyMenu(goHome);
 		
 		win.add(miniMenu);
@@ -80,7 +82,7 @@ module.exports = function() {
 			win.remove(otherWin);
 		}
 		
-		otherWin = MyView(aux, null, 400);
+		otherWin = MyView(aux, null, 400, true);
 		
 		win.add(otherWin);
 	}
