@@ -5,7 +5,8 @@ module.exports = function(category, f_callback) {
 		var category = new Object;
 		category.name = 'Broncesmestre';
 		category.id = category.num = 0;
-		category.image = 'http://broncesmestre.com/wp-content/themes/Bronces_Mestre/images/emes10.png';
+		//category.image = 'http://broncesmestre.com/wp-content/themes/Bronces_Mestre/images/emes10.png';
+		category.image = 'http://espaciohogar.com/wp-content/uploads/2012/07/grifo-osmosis.jpg';
 	}
 	
 	var view = Ti.UI.createView({
