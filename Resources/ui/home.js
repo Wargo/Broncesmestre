@@ -47,27 +47,11 @@ module.exports = function() {
 	var otherWin = null;
 	
 	var MyView = require(Mods.view);
+	var MyMenu = require(Mods.menu);
 	
 	function openCategory(subcategories) {
 		
-		var miniMenu = Ti.UI.createView({
-			width:200,
-			left:0,
-			opacity:0,
-			backgroundColor:'#000'
-		});
-		
-		miniMenu.add(Ti.UI.createLabel({text:'Volver', color:'white', font:{fontSize:20}}));
-		
-		miniMenu.addEventListener('click', function() {
-			scrollView.animate({opacity:1, duration:duration});
-			win.remove(miniMenu);
-			win.remove(newWin);
-			if (otherWin) {
-				win.remove(otherWin);
-			}
-		})
-		
+		var miniMenu = MyMenu([miniMenu, newWin, otherWin]);
 		var newWin = MyView(subcategories, openSubcategory, 200);
 		
 		win.add(miniMenu);
