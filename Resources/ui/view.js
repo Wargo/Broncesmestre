@@ -14,7 +14,7 @@ module.exports = function(subcategories, f_callback, width, move) {
 			shadowRadius:4,
 			shadowOpacity:0.4
 		});
-	}, 50);
+	}, 150);
 	
 	var tableView = Ti.UI.createTableView({
 		top:20,
@@ -78,6 +78,9 @@ module.exports = function(subcategories, f_callback, width, move) {
 		if (Ti.UI.orientation === 3) {
 			if (move) {
 				left = e.globalPoint.y - view._x;
+				if (e.globalPoint.y - view._x <= 300) {
+					return;
+				}
 			} else {
 				left = e.globalPoint.y - view._x - (e.globalPoint.y - init) / 2;
 			}
@@ -85,6 +88,9 @@ module.exports = function(subcategories, f_callback, width, move) {
 		} else if (Ti.UI.orientation === 4) {
 			if (move) {
 				left = Ti.Platform.displayCaps.getPlatformWidth() - e.globalPoint.y - view._x;
+				if (e.globalPoint.y - view._x >= Ti.Platform.displayCaps.getPlatformWidth() - 300) {
+					return;
+				}
 			} else {
 				left = Ti.Platform.displayCaps.getPlatformWidth() - e.globalPoint.y - view._x + (e.globalPoint.y - init) / 2;
 			}
@@ -96,9 +102,6 @@ module.exports = function(subcategories, f_callback, width, move) {
 	view.addEventListener('touchend', function(e) {
 		if (move) {
 			if (Ti.UI.orientation === 3) {
-				if (e.globalPoint.y - view._x <= 300) {
-					return;
-				}
 				if (e.globalPoint.y - view._x >= Ti.Platform.displayCaps.getPlatformWidth() - 300) {
 					view.animate({opacity:0});
 					return;
@@ -106,9 +109,6 @@ module.exports = function(subcategories, f_callback, width, move) {
 			} else {
 				if (e.globalPoint.y - view._x <= 300) {
 					view.animate({opacity:0});
-					return;
-				}
-				if (e.globalPoint.y - view._x >= Ti.Platform.displayCaps.getPlatformWidth() - 300) {
 					return;
 				}
 			}
