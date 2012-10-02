@@ -1,4 +1,8 @@
 
+var Mods = require('/modules');
+
+var $$ = require(Mods.styles);
+
 require('ti.viewshadow');
 
 module.exports = function(subcategories, f_callback, width, move) {

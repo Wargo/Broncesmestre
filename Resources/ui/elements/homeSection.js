@@ -1,4 +1,8 @@
 
+var Mods = require('/modules');
+
+var $$ = require(Mods.styles);
+
 module.exports = function(category, f_callback) {
 	
 	if (!category) {
@@ -17,25 +21,21 @@ module.exports = function(category, f_callback) {
 	});
 	
 	var image = Ti.UI.createImageView({
-		width:510,
+		width:1000,
 		height:'100%',
-		left:-100,
+		left:-300,
 		image:category.image
 	});
 	
 	var titleView = Ti.UI.createView({
 		height:50,
 		backgroundColor:'#333',
-		opacity:.5,
+		opacity:.8,
 		bottom:0
 	});
 	
-	var title = Ti.UI.createLabel({
-		text:category.num ? (category.name + ' (' + category.num + ')') : category.name,
-		bottom:20,
-		font:{fontSize:22},
-		color:'#FFF'
-	});
+	var title = Ti.UI.createLabel($$.homeBlockText);
+	title.text = category.num ? (category.name + ' (' + category.num + ')') : category.name;
 	
 	view.add(image);
 	view.add(titleView);

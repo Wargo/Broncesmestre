@@ -40,7 +40,7 @@ module.exports = function() {
 	
 	scrollView.addEventListener('scroll', function(e) {
 		for (i in bgImages) {
-			bgImages[i].left = -100 + e.x / 10;
+			bgImages[i].left = -300 + e.x / 5;
 		}
 	});
 	
@@ -52,6 +52,16 @@ module.exports = function() {
 	var MyMenu = require(Mods.menu);
 	
 	function openCategory(subcategories) {
+		
+		if (miniMenu) {
+			win.remove(miniMenu);
+		}
+		if (newWin) {
+			win.remove(newWin);
+		}
+		if (otherWin) {
+			win.remove(otherWin);
+		}
 		
 		newWin = MyView(subcategories, openSubcategory, 200, false);
 		miniMenu = MyMenu(goHome, openCategory);
