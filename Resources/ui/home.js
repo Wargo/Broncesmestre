@@ -54,7 +54,7 @@ module.exports = function() {
 	function openCategory(subcategories) {
 		
 		newWin = MyView(subcategories, openSubcategory, 200, false);
-		miniMenu = MyMenu(goHome);
+		miniMenu = MyMenu(goHome, openCategory);
 		
 		win.add(miniMenu);
 		win.add(newWin);

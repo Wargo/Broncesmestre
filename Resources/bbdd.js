@@ -7,7 +7,8 @@ module.exports = function() {
 				id:1,
 				name:'Herrajes decorativos',
 				num:603,
-				image:'http://broncesmestre.com/catalogo/categorias/imagen/Catalogo/1.JPG',
+				//image:'http://broncesmestre.com/catalogo/categorias/imagen/Catalogo/1.JPG',
+				image:'http://www.grb.es/content/files/descargaf_73_01_enter-plus-lavabo.jpg',
 				subcategories: [
 					{
 						id:1,
@@ -42,13 +43,15 @@ module.exports = function() {
 				id:2,
 				name:'Grifería artística',
 				num:643,
-				image:'http://broncesmestre.com/catalogo/categorias/imagen/Catalogo/2.JPG'
+				//image:'http://broncesmestre.com/catalogo/categorias/imagen/Catalogo/2.JPG'
+				image:'http://www.buscogremios.com/blog/wp-content/uploads/grifo.jpg'
 			},
 			{
 				id:3,
 				name:'Iluminación decorativa',
 				num:8,
-				image:'http://broncesmestre.com/catalogo/categorias/imagen/Catalogo/3.JPG'
+				//image:'http://broncesmestre.com/catalogo/categorias/imagen/Catalogo/3.JPG'
+				image:'http://2.bp.blogspot.com/_WR1jCMemQvI/TTSOCH1vPEI/AAAAAAAAGQM/QSMWKlDUKnk/s1600/monomando%2Bblanco%2Bnegro%2Blavabo%2Bdise%25C3%25B1o%2Btres%2Bcuadro%2Bexclusive%2Bcascada.jpg'
 			}
 		]
 	};
