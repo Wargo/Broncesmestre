@@ -36,6 +36,15 @@ module.exports = function() {
 						subcategories: [
 						
 						]
+					},
+					{
+						id:3,
+						name:'Accesorios herraje 2',
+						num:21,
+						image:'http://broncesmestre.com/catalogo/categorias/imagen/Linea/ACH.JPG',
+						subcategories: [
+						
+						]
 					}
 				]
 			},

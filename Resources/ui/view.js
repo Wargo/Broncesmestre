@@ -9,7 +9,8 @@ module.exports = function(subcategories, f_callback, width, move) {
 	
 	var view = Ti.UI.createView({
 		backgroundColor:'#FFF',
-		left:Ti.Platform.displayCaps.platformWidth - 1
+		left:Ti.Platform.displayCaps.platformWidth - 1,
+		_itsMe:true
 	});
 	
 	setTimeout(function() {
@@ -23,13 +24,19 @@ module.exports = function(subcategories, f_callback, width, move) {
 	var tableView = Ti.UI.createTableView({
 		top:20,
 		left:20,
-		right:20,
-		bottom:20
+		width:700
 	});
+
+	if (subcategories.length <= 7) {
+		tableView.height = 100 * subcategories.length;
+	} else {
+		tableView.bottom = 20;
+	}
 	
 	for	(i in subcategories) {
 		
 		var row = Ti.UI.createTableViewRow({
+			selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE,
 			height:100
 		});
 		
@@ -69,6 +76,33 @@ module.exports = function(subcategories, f_callback, width, move) {
 		
 	}
 	
+	var prueba = Ti.UI.createScrollView({
+		left:20,
+		top:20,
+		bottom:20,
+		//right:20,
+		width:600,
+		layout:'vertical',
+		contentHeight:'auto',
+		showVerticalScrollIndicator:true
+	});
+	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#FF0000'}));
+	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#00FF00'}));
+	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#0000FF'}));
+	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#FF0000'}));
+	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#00FF00'}));
+	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#0000FF'}));
+	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#FF0000'}));
+	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#00FF00'}));
+	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#0000FF'}));
+	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#FF0000'}));
+	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#00FF00'}));
+	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#0000FF'}));
+	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#FF0000'}));
+	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#00FF00'}));
+	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#0000FF'}));
+	
+	//view.add(prueba);
 	view.add(tableView);
 	
 	var init = null;
@@ -79,6 +113,8 @@ module.exports = function(subcategories, f_callback, width, move) {
 	});
 	
 	view.addEventListener('touchmove', function(e) {
+		tableView.scrollable = false;
+		prueba.touchEnabled = false;
 		if (Ti.UI.orientation === 3) {
 			if (move) {
 				left = e.globalPoint.y - view._x;
@@ -100,7 +136,7 @@ module.exports = function(subcategories, f_callback, width, move) {
 			}
 			view.animate({left:left, duration:1});
 		}
-		Ti.API.error(e.globalPoint.y);
+		//Ti.API.error(e.globalPoint.y - view._x);
 	});
 	
 	view.addEventListener('touchend', function(e) {
@@ -118,7 +154,9 @@ module.exports = function(subcategories, f_callback, width, move) {
 			}
 		}
 		view.animate({left:width});
-		init = null;
+		tableView.scrollable = true;
+		prueba.touchEnabled = true;
+		Ti.API.error('end');
 	});
 	
 	view.animate({left:width});
