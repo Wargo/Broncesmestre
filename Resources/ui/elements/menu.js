@@ -3,7 +3,7 @@ var Mods = require('/modules');
 
 var $$ = require(Mods.styles);
 
-module.exports = function(f_callback) {
+module.exports = function(f_callback_back, f_callback_category) {
 	
 	var view = Ti.UI.createView({
 		width:200,
@@ -29,7 +29,7 @@ module.exports = function(f_callback) {
 		
 	}
 	
-	view.addEventListener('click', function() {
+	back.addEventListener('click', function() {
 		f_callback();
 	});
 	
