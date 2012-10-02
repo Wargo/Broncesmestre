@@ -78,28 +78,13 @@ module.exports = function(subcategories, f_callback, width, move) {
 		if (Ti.UI.orientation === 3) {
 			if (move) {
 				left = e.globalPoint.y - view._x;
-				if (e.globalPoint.y - view._x <= 250) {
-					return;
-				}
-				if (e.globalPoint.y - view._x >= Ti.Platform.displayCaps.getPlatformWidth() - 200) {
-					view.animate({opacity:0});
-					return;
-				}
 			} else {
 				left = e.globalPoint.y - view._x - (e.globalPoint.y - init) / 2;
 			}
-			
 			view.animate({left:left, duration:1});
 		} else if (Ti.UI.orientation === 4) {
 			if (move) {
 				left = Ti.Platform.displayCaps.getPlatformWidth() - e.globalPoint.y - view._x;
-				if (e.globalPoint.y - view._x <= 200) {
-					view.animate({opacity:0});
-					return;
-				}
-				if (e.globalPoint.y - view._x >= Ti.Platform.displayCaps.getPlatformWidth() - 250) {
-					return;
-				}
 			} else {
 				left = Ti.Platform.displayCaps.getPlatformWidth() - e.globalPoint.y - view._x + (e.globalPoint.y - init) / 2;
 			}
@@ -109,6 +94,25 @@ module.exports = function(subcategories, f_callback, width, move) {
 	});
 	
 	view.addEventListener('touchend', function(e) {
+		if (move) {
+			if (Ti.UI.orientation === 3) {
+				if (e.globalPoint.y - view._x <= 300) {
+					return;
+				}
+				if (e.globalPoint.y - view._x >= Ti.Platform.displayCaps.getPlatformWidth() - 300) {
+					view.animate({opacity:0});
+					return;
+				}
+			} else {
+				if (e.globalPoint.y - view._x <= 300) {
+					view.animate({opacity:0});
+					return;
+				}
+				if (e.globalPoint.y - view._x >= Ti.Platform.displayCaps.getPlatformWidth() - 300) {
+					return;
+				}
+			}
+		}
 		view.animate({left:width});
 		init = null;
 	});
