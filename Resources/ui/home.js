@@ -11,7 +11,7 @@ module.exports = function() {
 	Ti.App.data = data;
 	
 	var win = Ti.UI.createWindow({
-		backgroundColor:'#000'
+		backgroundColor:'#333'
 	});
 	
 	var scrollView = Ti.UI.createScrollView({
