@@ -24,7 +24,7 @@ module.exports = function(category, f_callback) {
 	
 	var titleView = Ti.UI.createView({
 		height:50,
-		backgroundColor:'#000',
+		backgroundColor:'#333',
 		opacity:.5,
 		bottom:0
 	});
@@ -43,9 +43,7 @@ module.exports = function(category, f_callback) {
 	view._image = image;
 	
 	view.addEventListener('singletap', function(e) {
-		
 		f_callback(category.subcategories);
-		
 	});
 	
 	return view;
