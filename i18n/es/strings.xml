@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-	<string name="welcome">Welcome to %s!</string>
+	<string name="back">Volver</string>
+	<string name="cat1">Herrajes decorativos</string>
+	<string name="cat2">Grifería artística</string>
+	<string name="cat3">Iluminación decorativa</string>
 </resources>

@@ -16,6 +16,7 @@ module.exports = {
 	 * Elements
 	 */
 	homeSection: '/ui/elements/homeSection',
+	menu: '/ui/elements/menu',
 	
 	/*
 	 * BBDD

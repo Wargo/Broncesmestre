@@ -5,8 +5,6 @@ var $$ = require(Mods.styles);
 
 module.exports = function() {
 	
-	var duration = 300;
-	
 	var getData = require(Mods.bbdd);
 	var data = getData();
 	
@@ -45,21 +43,33 @@ module.exports = function() {
 	});
 	
 	var otherWin = null;
+	var newWin = null;
+	var miniMenu = null;
 	
 	var MyView = require(Mods.view);
 	var MyMenu = require(Mods.menu);
 	
 	function openCategory(subcategories) {
 		
-		var miniMenu = MyMenu([miniMenu, newWin, otherWin]);
-		var newWin = MyView(subcategories, openSubcategory, 200);
+		newWin = MyView(subcategories, openSubcategory, 200);
+		miniMenu = MyMenu(goHome);
 		
 		win.add(miniMenu);
 		win.add(newWin);
 		
-		scrollView.animate({opacity:0, duration:duration});
-		miniMenu.animate({opacity:1, duration:duration});
+		scrollView.animate({opacity:0});
+		miniMenu.animate({opacity:1});
 		
+	}
+	
+	function goHome() {
+		scrollView.animate({opacity:1});
+
+		win.remove(miniMenu);		
+		win.remove(newWin);
+		if (otherWin) {
+			win.remove(otherWin);
+		}
 	}
 	
 	function openSubcategory(subcategory) {
