@@ -86,6 +86,7 @@ module.exports = function() {
 	
 	function openSubcategory(subcategory) {
 		var aux = [];
+		
 		aux.push(subcategory);
 		
 		if (otherWin) {
