@@ -76,33 +76,6 @@ module.exports = function(subcategories, f_callback, width, move) {
 		
 	}
 	
-	var prueba = Ti.UI.createScrollView({
-		left:20,
-		top:20,
-		bottom:20,
-		//right:20,
-		width:600,
-		layout:'vertical',
-		contentHeight:'auto',
-		showVerticalScrollIndicator:true
-	});
-	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#FF0000'}));
-	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#00FF00'}));
-	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#0000FF'}));
-	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#FF0000'}));
-	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#00FF00'}));
-	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#0000FF'}));
-	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#FF0000'}));
-	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#00FF00'}));
-	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#0000FF'}));
-	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#FF0000'}));
-	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#00FF00'}));
-	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#0000FF'}));
-	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#FF0000'}));
-	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#00FF00'}));
-	prueba.add(Ti.UI.createView({width:600,height:100,backgroundColor:'#0000FF'}));
-	
-	//view.add(prueba);
 	view.add(tableView);
 	
 	var init = null;
@@ -114,7 +87,6 @@ module.exports = function(subcategories, f_callback, width, move) {
 	
 	view.addEventListener('touchmove', function(e) {
 		tableView.scrollable = false;
-		prueba.touchEnabled = false;
 		if (Ti.UI.orientation === 3) {
 			if (move) {
 				left = e.globalPoint.y - view._x;
@@ -136,18 +108,17 @@ module.exports = function(subcategories, f_callback, width, move) {
 			}
 			view.animate({left:left, duration:1});
 		}
-		Ti.API.error(left);
 	});
 	
 	view.addEventListener('touchend', function(e) {
 		if (move) {
 			if (Ti.UI.orientation === 3) {
-				if (e.globalPoint.y - view._x >= Ti.Platform.displayCaps.getPlatformWidth() - 300) {
+				if (left >= 300) {
 					view.animate({opacity:0});
 					return;
 				}
 			} else {
-				if (e.globalPoint.y - view._x <= 300) {
+				if (left >= 300) {
 					view.animate({opacity:0});
 					return;
 				}
@@ -155,8 +126,6 @@ module.exports = function(subcategories, f_callback, width, move) {
 		}
 		view.animate({left:width});
 		tableView.scrollable = true;
-		prueba.touchEnabled = true;
-		Ti.API.error('end');
 	});
 	
 	view.animate({left:width});
