@@ -21,7 +21,7 @@ module.exports = function(category, f_callback) {
 	});
 	
 	var image = Ti.UI.createImageView({
-		width:1000,
+		width:1200,
 		height:'100%',
 		left:-300,
 		image:category.image
