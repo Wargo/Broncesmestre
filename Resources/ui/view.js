@@ -118,7 +118,7 @@ module.exports = function(subcategories, f_callback, width, move) {
 		if (Ti.UI.orientation === 3) {
 			if (move) {
 				left = e.globalPoint.y - view._x;
-				if (e.globalPoint.y - view._x <= 300) {
+				if (left <= 300) {
 					return;
 				}
 			} else {
@@ -128,7 +128,7 @@ module.exports = function(subcategories, f_callback, width, move) {
 		} else if (Ti.UI.orientation === 4) {
 			if (move) {
 				left = Ti.Platform.displayCaps.getPlatformWidth() - e.globalPoint.y - view._x;
-				if (e.globalPoint.y - view._x >= Ti.Platform.displayCaps.getPlatformWidth() - 300) {
+				if (left <= 300) {
 					return;
 				}
 			} else {
@@ -136,7 +136,7 @@ module.exports = function(subcategories, f_callback, width, move) {
 			}
 			view.animate({left:left, duration:1});
 		}
-		//Ti.API.error(e.globalPoint.y - view._x);
+		Ti.API.error(left);
 	});
 	
 	view.addEventListener('touchend', function(e) {
