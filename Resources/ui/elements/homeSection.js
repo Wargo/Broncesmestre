@@ -9,8 +9,7 @@ module.exports = function(category, f_callback) {
 		var category = new Object;
 		category.name = 'Broncesmestre';
 		category.id = category.num = 0;
-		//category.image = 'http://broncesmestre.com/wp-content/themes/Bronces_Mestre/images/emes10.png';
-		category.image = 'http://espaciohogar.com/wp-content/uploads/2012/07/grifo-osmosis.jpg';
+		category.image = '/ui/images/logo.jpg';
 	}
 	
 	var view = Ti.UI.createView({
@@ -23,7 +22,7 @@ module.exports = function(category, f_callback) {
 	var image = Ti.UI.createImageView({
 		width:1200,
 		height:'100%',
-		left:-300,
+		left:-500,
 		image:category.image
 	});
 	

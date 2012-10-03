@@ -40,7 +40,7 @@ module.exports = function() {
 	
 	scrollView.addEventListener('scroll', function(e) {
 		for (i in bgImages) {
-			bgImages[i].left = -300 + e.x / 5;
+			bgImages[i].left = -500 + e.x / 5;
 		}
 	});
 	
