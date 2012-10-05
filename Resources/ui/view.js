@@ -24,7 +24,7 @@ module.exports = function(subcategories, f_callback, width, move) {
 	var tableView = Ti.UI.createTableView({
 		top:20,
 		left:20,
-		width:700
+		width:500
 	});
 
 	if (subcategories.length <= 7) {
@@ -44,11 +44,18 @@ module.exports = function(subcategories, f_callback, width, move) {
 			height:100
 		});
 		
-		var title = Ti.UI.createLabel({
-			height:30,
-			left:100
-		});
+		var title = Ti.UI.createLabel($$.text);
+		title.top = 10;
+		title.height = 30;
+		title.left = 100;
 		title.text = subcategories[i].name;
+		
+		var text = Ti.UI.createLabel($$.text);
+		text.top = 40;
+		text.height = 50;
+		text.left = 100;
+		text.color = '#999';
+		text.text = subcategories[i].text;
 		
 		var image = Ti.UI.createImageView({
 			left:20,
@@ -58,6 +65,7 @@ module.exports = function(subcategories, f_callback, width, move) {
 		});
 		
 		content.add(title);
+		content.add(text);
 		content.add(image);
 		
 		row.add(content);
@@ -79,14 +87,27 @@ module.exports = function(subcategories, f_callback, width, move) {
 	view.add(tableView);
 	
 	var init = null;
+	var left = null;
+	
+	var startTime = 0;
+	var currentTime = 0;
 	
 	view.addEventListener('touchstart', function(e) {
 		view._x = e.x;
 		init = e.globalPoint.y;
+		startTime = new Date().getTime();
 	});
 	
 	view.addEventListener('touchmove', function(e) {
+		
+		currentTime = new Date().getTime();
+		
+		if (currentTime < startTime + 200) {
+			return;
+		}
+		
 		tableView.scrollable = false;
+		
 		if (Ti.UI.orientation === 3) {
 			if (move) {
 				left = e.globalPoint.y - view._x;
@@ -108,27 +129,21 @@ module.exports = function(subcategories, f_callback, width, move) {
 			}
 			view.animate({left:left, duration:1});
 		}
+		
 	});
 	
 	view.addEventListener('touchend', function(e) {
 		if (move) {
-			if (Ti.UI.orientation === 3) {
-				if (left >= 300) {
-					view.animate({opacity:0});
-					return;
-				}
-			} else {
-				if (left >= 300) {
-					view.animate({opacity:0});
-					return;
-				}
+			if (left >= Ti.Platform.displayCaps.getPlatformWidth() - 300) {
+				view.animate({opacity:0});
+				return;
 			}
 		}
 		view.animate({left:width});
 		tableView.scrollable = true;
 	});
 	
-	view.animate({left:width});
+	//view.animate({left:width});
 	
 	return view;
 	

@@ -5,14 +5,20 @@ var $$ = require(Mods.styles);
 
 module.exports = function() {
 	
-	var getData = require(Mods.bbdd);
-	var data = getData();
+	var loading = Ti.UI.createActivityIndicator({
+		message:L('loading'),
+		color:'white'
+	});
 	
-	Ti.App.data = data;
+	var getData = require(Mods.bbdd);
+	getData(setData);
 	
 	var win = Ti.UI.createWindow({
 		backgroundColor:'#333'
 	});
+	
+	win.add(loading);
+	loading.show();
 	
 	var scrollView = Ti.UI.createScrollView({
 		contentWidth:'auto',
@@ -27,16 +33,23 @@ module.exports = function() {
 	var bgImages = [];
 	bgImages.push(broncesmestre._image);
 	
-	for (i in data.categories) {
+	function setData(data) {
+
+		Ti.App.data = data;
+
+		for (i in data) {
+			
+			var section = MySection(data[i], openCategory);
+			scrollView.add(section);
+			
+			bgImages.push(section._image);
+			
+		}
 		
-		var section = MySection(data.categories[i], openCategory);
-		scrollView.add(section);
+		win.add(scrollView);
 		
-		bgImages.push(section._image);
-		
+		//loading.hide();
 	}
-	
-	win.add(scrollView);
 	
 	scrollView.addEventListener('scroll', function(e) {
 		for (i in bgImages) {
@@ -69,6 +82,8 @@ module.exports = function() {
 		win.add(miniMenu);
 		win.add(newWin);
 		
+		newWin.animate({left:200});
+		
 		scrollView.animate({opacity:0});
 		miniMenu.animate({opacity:1});
 		
@@ -94,6 +109,8 @@ module.exports = function() {
 		}
 		
 		otherWin = MyView(aux, null, 400, true);
+		
+		otherWin.animate({left:400});
 		
 		win.add(otherWin);
 	}

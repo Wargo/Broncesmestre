@@ -21,12 +21,12 @@ module.exports = function(f_callback_back, f_callback_category) {
 	
 	view.add(back);
 	
-	for (i in Ti.App.data.categories) {
+	for (i in Ti.App.data) {
 		
 		var btn = Ti.UI.createView($$.homeBtn);
 		var text = Ti.UI.createLabel($$.textMenu);
-		text.text = Ti.App.data.categories[i].name;
-		btn._subcategories = Ti.App.data.categories[i].subcategories;
+		text.text = Ti.App.data[i].name;
+		btn._subcategories = Ti.App.data[i].subcategories;
 		
 		btn.add(text);
 		view.add(btn);
