@@ -13,6 +13,14 @@ module.exports = function(subcategories, f_callback, width, move) {
 		_itsMe:true
 	});
 	
+	var loader = Ti.UI.createActivityIndicator({
+		style:Ti.UI.iPhone.ActivityIndicatorStyle.DARK,
+		message:L('loading')
+	});
+	
+	view.add(loader);
+	loader.show();
+	
 	setTimeout(function() {
 		view.setShadow({
 			shadowOffset:{x:-10,y:0},
@@ -33,58 +41,61 @@ module.exports = function(subcategories, f_callback, width, move) {
 		tableView.bottom = 20;
 	}
 	
-	for	(i in subcategories) {
-		
-		var row = Ti.UI.createTableViewRow({
-			selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE,
-			height:100
-		});
-		
-		var content = Ti.UI.createView({
-			height:100
-		});
-		
-		var title = Ti.UI.createLabel($$.text);
-		title.top = 10;
-		title.height = 30;
-		title.left = 100;
-		title.text = subcategories[i].name;
-		
-		var text = Ti.UI.createLabel($$.text);
-		text.top = 40;
-		text.height = 50;
-		text.left = 100;
-		text.color = '#999';
-		text.text = subcategories[i].text;
-		
-		var image = Ti.UI.createImageView({
-			left:20,
-			image:subcategories[i].image,
-			width:60,
-			height:'100%'
-		});
-		
-		content.add(title);
-		content.add(text);
-		content.add(image);
-		
-		row.add(content);
-		
-		tableView.appendRow(row);
-		
-		row._current = subcategories[i]
-		
-		row.addEventListener('click', function(e) {
-			
-			if (f_callback) {
-				f_callback(e.row._current);
-			}
-			
-		});
-		
-	}
+	setTimeout(function() {
 	
-	view.add(tableView);
+		for	(i in subcategories) {
+			
+			var row = Ti.UI.createTableViewRow({
+				selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE,
+				height:100
+			});
+			
+			var content = Ti.UI.createView({
+				height:100
+			});
+			
+			var title = Ti.UI.createLabel($$.text);
+			title.top = 10;
+			title.height = 30;
+			title.left = 100;
+			title.text = subcategories[i].name;
+			
+			var text = Ti.UI.createLabel($$.text);
+			text.top = 40;
+			text.height = 50;
+			text.left = 100;
+			text.color = '#999';
+			text.text = subcategories[i].text;
+			
+			var image = Ti.UI.createImageView({
+				left:20,
+				image:subcategories[i].image,
+				width:60,
+				height:'100%'
+			});
+			
+			content.add(title);
+			content.add(text);
+			content.add(image);
+			
+			row.add(content);
+			
+			tableView.appendRow(row);
+			
+			row._current = subcategories[i]
+			
+			row.addEventListener('click', function(e) {
+				if (f_callback) {
+					f_callback(e.row._current);
+				}
+			});
+			
+		}
+		
+		view.add(tableView);
+		loader.hide();
+	
+	}, 100);
 	
 	var init = null;
 	var left = null;
@@ -102,7 +113,7 @@ module.exports = function(subcategories, f_callback, width, move) {
 		
 		currentTime = new Date().getTime();
 		
-		if (currentTime < startTime + 200) {
+		if (currentTime < startTime + 100) {
 			return;
 		}
 		

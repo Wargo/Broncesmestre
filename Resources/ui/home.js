@@ -48,7 +48,7 @@ module.exports = function() {
 		
 		win.add(scrollView);
 		
-		//loading.hide();
+		loading.hide();
 	}
 	
 	scrollView.addEventListener('scroll', function(e) {
@@ -66,8 +66,10 @@ module.exports = function() {
 	
 	function openCategory(subcategories) {
 		
-		if (miniMenu) {
-			win.remove(miniMenu);
+		if (!miniMenu) {
+			miniMenu = MyMenu(goHome, openCategory);
+			win.add(miniMenu);
+			miniMenu.animate({opacity:1});
 		}
 		if (newWin) {
 			win.remove(newWin);
@@ -76,16 +78,11 @@ module.exports = function() {
 			win.remove(otherWin);
 		}
 		
-		newWin = MyView(subcategories, openSubcategory, 200, false);
-		miniMenu = MyMenu(goHome, openCategory);
-		
-		win.add(miniMenu);
-		win.add(newWin);
-		
-		newWin.animate({left:200});
-		
 		scrollView.animate({opacity:0});
-		miniMenu.animate({opacity:1});
+		
+		newWin = MyView(subcategories, openSubcategory, 200, false);
+		win.add(newWin);
+		newWin.animate({left:200});
 		
 	}
 	
@@ -94,6 +91,8 @@ module.exports = function() {
 
 		win.remove(miniMenu);		
 		win.remove(newWin);
+		miniMenu = null;
+		
 		if (otherWin) {
 			win.remove(otherWin);
 		}
