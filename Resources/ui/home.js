@@ -143,6 +143,8 @@ module.exports = function() {
 		articleWin.animate({left:300});
 		otherWin.animate({left:100});
 		
+		otherWin._canMove = false;
+		
 		win.add(articleWin);
 		
 	}

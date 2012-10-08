@@ -11,7 +11,8 @@ module.exports = function(subcategories, f_callback, width, move) {
 		backgroundColor:'#FFF',
 		left:Ti.Platform.displayCaps.platformWidth - 1,
 		width:600,
-		_itsMe:true
+		_itsMe:true,
+		_canMove:true
 	});
 	
 	var loader = Ti.UI.createActivityIndicator({
@@ -105,12 +106,19 @@ module.exports = function(subcategories, f_callback, width, move) {
 	var currentTime = 0;
 	
 	view.addEventListener('touchstart', function(e) {
+		if (!view._canMove) {
+			return;
+		}
 		view._x = e.x;
 		init = e.globalPoint.y;
 		startTime = new Date().getTime();
 	});
 	
 	view.addEventListener('touchmove', function(e) {
+		
+		if (!view._canMove) {
+			return;
+		}
 		
 		currentTime = new Date().getTime();
 		
@@ -145,6 +153,10 @@ module.exports = function(subcategories, f_callback, width, move) {
 	});
 	
 	view.addEventListener('touchend', function(e) {
+		if (!view._canMove) {
+			return;
+		}
+		
 		if (move) {
 			if (left >= Ti.Platform.displayCaps.getPlatformWidth() - 300) {
 				view.animate({opacity:0});
