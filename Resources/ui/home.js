@@ -138,7 +138,10 @@ module.exports = function() {
 	
 		articleWin = MyArticle(article);
 		
-		articleWin.animate({left:600});
+		articleWin._parent = otherWin;
+		
+		articleWin.animate({left:300});
+		otherWin.animate({left:100});
 		
 		win.add(articleWin);
 		

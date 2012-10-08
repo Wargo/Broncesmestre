@@ -22,14 +22,15 @@ module.exports = function(article) {
 		backgroundColor:'#FFF',
 		left:Ti.Platform.displayCaps.platformWidth - 1,
 		contentHeight:'auto',
-		showVerticalScrollIndicator:true
+		showVerticalScrollIndicator:true,
+		width:724
 	});
-	
+
 	setTimeout(function() {
 		view.setShadow({
-			shadowOffset:{x:-10,y:0},
-			shadowRadius:4,
-			shadowOpacity:0.4
+			shadowOffset:{x:0,y:0},
+			shadowRadius:15,
+			shadowOpacity:0.6
 		});
 	}, 100);
 	
@@ -44,8 +45,8 @@ module.exports = function(article) {
 	for (i in article.images) {
 		var image = Ti.UI.createImageView({
 			image:article.images[i].url,
-			height:'122%',
-			width:600
+			height:'150%',
+			width:724
 		});
 		images.addView(image);
 	}
@@ -53,6 +54,69 @@ module.exports = function(article) {
 	view.add(images);
 	view.add(title);
 	view.add(text);
+	
+	var width = 300;
+	var move = true;
+	var init = null;
+	var left = null;
+	
+	var startTime = 0;
+	var currentTime = 0;
+	
+	view.addEventListener('touchstart', function(e) {
+		view._x = e.x;
+		init = e.globalPoint.y;
+		startTime = new Date().getTime();
+	});
+	
+	view.addEventListener('touchmove', function(e) {
+		
+		currentTime = new Date().getTime();
+		
+		if (currentTime < startTime + 100) {
+			return;
+		}
+		
+		//view.touchEnabled = false;
+		
+		if (Ti.UI.orientation === 3) {
+			if (move) {
+				left = e.globalPoint.y - view._x;
+				if (left <= 300) {
+					return;
+				}
+			} else {
+				left = e.globalPoint.y - view._x - (e.globalPoint.y - init) / 2;
+			}
+			view.animate({left:left, duration:1});
+		} else if (Ti.UI.orientation === 4) {
+			if (move) {
+				left = Ti.Platform.displayCaps.getPlatformWidth() - e.globalPoint.y - view._x;
+				if (left <= 300) {
+					return;
+				}
+			} else {
+				left = Ti.Platform.displayCaps.getPlatformWidth() - e.globalPoint.y - view._x + (e.globalPoint.y - init) / 2;
+			}
+			view.animate({left:left, duration:1});
+		}
+		
+	});
+	
+	view.addEventListener('touchend', function(e) {
+		if (move) {
+			if (left >= Ti.Platform.displayCaps.getPlatformWidth() - 300) {
+				view.animate({opacity:0});
+				view._parent.animate({left:400});
+				setTimeout(function() {
+					view.parent.remove(view);
+				}, 300);
+				return;
+			}
+		}
+		view.animate({left:width});
+		//view.touchEnabled = true;
+	});
 	
 	return view;
 	

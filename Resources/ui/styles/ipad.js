@@ -30,7 +30,7 @@ module.exports = {
 	articleTitle: {
 		font:{fontSize:25, fontFamily:font},
 		color:'#333',
-		top:230,
+		top:330,
 		left:20,
 		right:20
 	},
@@ -38,14 +38,14 @@ module.exports = {
 	articleText: {
 		font:{fontSize:15, fontFamily:font},
 		color:'#999',
-		top:270,
+		top:370,
 		left:20,
 		right:20
 	},
 	
 	articleImages: {
 		top:0,
-		height:200,
+		height:300,
 		showPagingControl:true
 	}
 	
