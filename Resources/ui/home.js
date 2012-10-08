@@ -60,9 +60,11 @@ module.exports = function() {
 	var otherWin = null;
 	var newWin = null;
 	var miniMenu = null;
+	var articleWin = null;
 	
 	var MyView = require(Mods.view);
 	var MyMenu = require(Mods.menu);
+	var MyArticle = require(Mods.article);
 	
 	function openCategory(subcategories) {
 		
@@ -76,6 +78,9 @@ module.exports = function() {
 		}
 		if (otherWin) {
 			win.remove(otherWin);
+		}
+		if (articleWin) {
+			win.remove(articleWin);
 		}
 		
 		scrollView.animate({opacity:0});
@@ -96,22 +101,47 @@ module.exports = function() {
 		if (otherWin) {
 			win.remove(otherWin);
 		}
+		
+		if (articleWin) {
+			win.remove(articleWin);
+		}
 	}
 	
 	function openSubcategory(subcategory) {
 		var aux = [];
 		
 		aux.push(subcategory);
+		aux.push(subcategory);
+		aux.push(subcategory);
+		aux.push(subcategory);
 		
 		if (otherWin) {
 			win.remove(otherWin);
 		}
 		
-		otherWin = MyView(aux, null, 400, true);
+		if (articleWin) {
+			win.remove(articleWin);
+		}
+		
+		otherWin = MyView(aux, openArticle, 400, true);
 		
 		otherWin.animate({left:400});
 		
 		win.add(otherWin);
+	}
+	
+	function openArticle(article) {
+		
+		if (articleWin) {
+			win.remove(articleWin);
+		}
+	
+		articleWin = MyArticle(article);
+		
+		articleWin.animate({left:600});
+		
+		win.add(articleWin);
+		
 	}
 	
 	return win;

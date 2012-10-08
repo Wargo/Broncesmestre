@@ -1,5 +1,14 @@
 
 module.exports = function(f_callback) {
+	
+	if (Ti.App.Properties.getString('bbdd')) {
+		var result = JSON.parse(Ti.App.Properties.getString('bbdd'));
+		Ti.API.info('cache ' + Ti.App.Properties.getString('bbdd'));
+		setTimeout(function() {
+			f_callback(result.data);
+		}, 100);
+		return;
+	}
 
 	var path = 'http://www.broncesmestre.com/appMovil.php';
 	var client = Ti.Network.createHTTPClient({
@@ -7,6 +16,7 @@ module.exports = function(f_callback) {
 			Ti.API.info('success ' + this.responseText);
 			var result = JSON.parse(this.responseText);
 			if (result.status == 'ok') {
+				Ti.App.Properties.setString('bbdd', this.responseText);
 				f_callback(result.data);
 			}
 		},

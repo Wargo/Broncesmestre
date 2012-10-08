@@ -99,6 +99,7 @@ module.exports = function(subcategories, f_callback, width, move) {
 	
 	var init = null;
 	var left = null;
+	var currentLeft = null;
 	
 	var startTime = 0;
 	var currentTime = 0;

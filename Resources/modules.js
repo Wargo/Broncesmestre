@@ -6,6 +6,7 @@ module.exports = {
 	 */
 	home: '/ui/home',
 	view: '/ui/view',
+	article: '/ui/article',
 	
 	/*
 	 * Styles

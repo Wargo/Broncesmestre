@@ -25,6 +25,28 @@ module.exports = {
 		top:20,
 		left:10,
 		backgroundColor:'#111'
+	},
+	
+	articleTitle: {
+		font:{fontSize:25, fontFamily:font},
+		color:'#333',
+		top:230,
+		left:20,
+		right:20
+	},
+	
+	articleText: {
+		font:{fontSize:15, fontFamily:font},
+		color:'#999',
+		top:270,
+		left:20,
+		right:20
+	},
+	
+	articleImages: {
+		top:0,
+		height:200,
+		showPagingControl:true
 	}
 	
 }
