@@ -1,6 +1,8 @@
 
 module.exports = function(f_callback) {
 	
+	Ti.App.Properties.removeProperty('bbdd');
+	
 	if (Ti.App.Properties.getString('bbdd')) {
 		var result = JSON.parse(Ti.App.Properties.getString('bbdd'));
 		Ti.API.info('cache ' + Ti.App.Properties.getString('bbdd'));

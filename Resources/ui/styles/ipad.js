@@ -17,7 +17,9 @@ module.exports = {
 	homeBlockText: {
 		bottom:20,
 		font:{fontSize:22, fontFamily:font},
-		color:'#FFF'
+		color:'#FFF',
+		shadowColor:'#000',
+		shadowOffset:{x:1,y:1}
 	},
 	
 	homeBtn: {

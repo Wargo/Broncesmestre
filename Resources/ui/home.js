@@ -20,6 +20,23 @@ module.exports = function() {
 	win.add(loading);
 	loading.show();
 	
+	var header = Ti.UI.createView({
+		backgroundColor:'#000',
+		opacity:0.7,
+		top:0,
+		zIndex:100,
+		height:80
+	});
+	
+	var logo = Ti.UI.createImageView({
+		image:'ui/images/logo_white.png',
+		zIndex:101,
+		top:10
+	});
+	
+	win.add(header);
+	win.add(logo);
+	
 	var scrollView = Ti.UI.createScrollView({
 		contentWidth:'auto',
 		layout:'horizontal'
@@ -27,11 +44,7 @@ module.exports = function() {
 	
 	var MySection = require(Mods.homeSection);
 	
-	var broncesmestre = MySection(0, openCategory);
-	scrollView.add(broncesmestre);
-	
 	var bgImages = [];
-	bgImages.push(broncesmestre._image);
 	
 	function setData(data) {
 
@@ -45,6 +58,11 @@ module.exports = function() {
 			bgImages.push(section._image);
 			
 		}
+		
+		var broncesmestre = MySection(0, openCategory);
+		scrollView.add(broncesmestre);
+		
+		bgImages.push(broncesmestre._image);
 		
 		win.add(scrollView);
 		
@@ -84,6 +102,8 @@ module.exports = function() {
 		}
 		
 		scrollView.animate({opacity:0});
+		header.animate({opacity:0});
+		logo.animate({opacity:0});
 		
 		newWin = MyView(subcategories, openSubcategory, 200, false);
 		win.add(newWin);
@@ -93,6 +113,8 @@ module.exports = function() {
 	
 	function goHome() {
 		scrollView.animate({opacity:1});
+		header.animate({opacity:0.7});
+		logo.animate({opacity:1});
 
 		win.remove(miniMenu);		
 		win.remove(newWin);

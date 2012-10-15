@@ -34,7 +34,8 @@ module.exports = function(category, f_callback) {
 	});
 	
 	var title = Ti.UI.createLabel($$.homeBlockText);
-	title.text = category.num ? (category.name + ' (' + category.num + ')') : category.name;
+	//title.text = category.num ? (category.name + ' (' + category.num + ')') : category.name;
+	title.text = category.name;
 	
 	view.add(image);
 	view.add(titleView);

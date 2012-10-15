@@ -60,7 +60,11 @@ module.exports = function(subcategories, f_callback, width, move) {
 			title.top = 10;
 			title.height = 30;
 			title.left = 100;
-			title.text = subcategories[i].name;
+			if (subcategories[i].num) {
+				title.text = subcategories[i].name + ' (' + subcategories[i].num + ')';
+			} else {
+				title.text = subcategories[i].name;
+			}
 			
 			var text = Ti.UI.createLabel($$.text);
 			text.top = 40;
