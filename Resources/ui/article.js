@@ -18,21 +18,26 @@ module.exports = function(article) {
 		{url:'http://www.broncesmestre.com/wp-content/thumbgen_cache/0932509a7687acaff339908fc2c57ff7.png'}
 	];
 	
-	var view = Ti.UI.createScrollView({
+	var view = Ti.UI.createView({
 		backgroundColor:'#FFF',
 		left:Ti.Platform.displayCaps.platformWidth - 1,
-		contentHeight:'auto',
-		showVerticalScrollIndicator:true,
 		width:724
 	});
+	
+	var tableView = Ti.UI.createTableView();
+	var row = Ti.UI.createTableViewRow({
+		selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
+	});
+	
+	tableView.appendRow(row);
 
-	setTimeout(function() {
+	view.addEventListener('postlayout', function() {
 		view.setShadow({
 			shadowOffset:{x:0,y:0},
 			shadowRadius:15,
 			shadowOpacity:0.6
 		});
-	}, 100);
+	});
 	
 	var title = Ti.UI.createLabel($$.articleTitle);
 	title.text = article.title;
@@ -51,9 +56,9 @@ module.exports = function(article) {
 		images.addView(image);
 	}
 	
-	view.add(images);
-	view.add(title);
-	view.add(text);
+	row.add(images);
+	row.add(title);
+	row.add(text);
 	
 	var width = 300;
 	var move = true;
@@ -76,7 +81,7 @@ module.exports = function(article) {
 			return;
 		}
 		
-		//view.touchEnabled = false;
+		tableView.scrollable = false;
 		
 		if (Ti.UI.orientation === 3) {
 			if (move) {
@@ -115,8 +120,10 @@ module.exports = function(article) {
 			}
 		}
 		view.animate({left:width});
-		//view.touchEnabled = true;
+		tableView.scrollable = true;
 	});
+	
+	view.add(tableView);
 	
 	return view;
 	

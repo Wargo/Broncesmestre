@@ -23,13 +23,13 @@ module.exports = function(subcategories, f_callback, width, move) {
 	view.add(loader);
 	loader.show();
 	
-	setTimeout(function() {
+	view.addEventListener('postlayout', function() {
 		view.setShadow({
 			shadowOffset:{x:0,y:0},
 			shadowRadius:15,
 			shadowOpacity:0.6
 		});
-	}, 150);
+	});
 	
 	var tableView = Ti.UI.createTableView({
 		top:20,
