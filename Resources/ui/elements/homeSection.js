@@ -9,7 +9,7 @@ module.exports = function(category, f_callback) {
 		var category = new Object;
 		category.name = 'Broncesmestre';
 		category.id = category.num = 0;
-		category.image = '/ui/images/logo.jpg';
+		category.image = '/ui/images/bronces.jpg';
 	}
 	
 	var view = Ti.UI.createView({

@@ -74,9 +74,9 @@ module.exports = function(subcategories, f_callback, width, move) {
 			text.text = subcategories[i].text;
 			
 			var image = Ti.UI.createImageView({
-				left:20,
+				left:0,
 				image:subcategories[i].image,
-				width:60,
+				width:80,
 				height:'100%'
 			});
 			

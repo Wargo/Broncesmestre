@@ -15,8 +15,8 @@ module.exports = {
 	},
 	
 	homeBlockText: {
-		bottom:20,
-		font:{fontSize:22, fontFamily:font},
+		bottom:15,
+		font:{fontSize:24, fontFamily:font},
 		color:'#FFF',
 		shadowColor:'#000',
 		shadowOffset:{x:1,y:1}
