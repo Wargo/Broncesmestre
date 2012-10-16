@@ -13,10 +13,13 @@ module.exports = function(category, f_callback) {
 	}
 	
 	var view = Ti.UI.createView({
-		width:310,
-		borderColor:'#333',
-		borderWidth:5,
-		backgroundColor:'#FFF'
+		width:300,
+		//borderColor:'#5333',
+		//borderWidth:5,
+		backgroundColor:'#FFF',
+		left:10,
+		bottom:10,
+		top:10
 	});
 	
 	var image = Ti.UI.createImageView({
@@ -43,7 +46,7 @@ module.exports = function(category, f_callback) {
 	
 	view.add(image);
 	view.add(titleView);
-	view.add(title);
+	titleView.add(title);
 	titleView.add(icon);
 
 	view._image = image;

@@ -14,10 +14,7 @@ module.exports = function() {
 	getData(setData);
 	
 	var win = Ti.UI.createWindow({
-		//backgroundColor:'#333'
-		//backgroundImage:'ui/images/bg.png',
-		//backgroundRepeat:true
-		backgroundColor:Ti.UI.iOS.COLOR_UNDER_PAGE_BACKGROUND
+		backgroundColor:Ti.UI.iOS.COLOR_VIEW_FLIPSIDE_BACKGROUND
 	});
 	
 	win.add(loading);
@@ -42,7 +39,8 @@ module.exports = function() {
 	
 	var scrollView = Ti.UI.createScrollView({
 		contentWidth:'auto',
-		layout:'horizontal'
+		layout:'horizontal',
+		backgroundColor:'transparent'
 	});
 	
 	var MySection = require(Mods.homeSection);
