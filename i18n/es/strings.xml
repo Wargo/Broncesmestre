@@ -2,4 +2,9 @@
 <resources>
 	<string name="back">Volver</string>
 	<string name="loading">Cargando...</string>
+	<string name="config">Configuración</string>
+	<string name="close">Cerrar</string>
+	<string name="delete">Borrar datos</string>
+	<string name="deletedTitle">Datos borrados</string>
+	<string name="deletedText">Los datos han sido borrados, reinicie la aplicación para obtener los nuevos datos</string>
 </resources>

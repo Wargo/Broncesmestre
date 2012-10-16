@@ -164,6 +164,9 @@ module.exports = function(subcategories, f_callback, width, move) {
 		if (move) {
 			if (left >= Ti.Platform.displayCaps.getPlatformWidth() - 300) {
 				view.animate({opacity:0});
+				setTimeout(function() {
+					view.parent.remove(view);
+				}, 300);
 				return;
 			}
 		}

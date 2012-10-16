@@ -14,7 +14,10 @@ module.exports = function() {
 	getData(setData);
 	
 	var win = Ti.UI.createWindow({
-		backgroundColor:'#333'
+		//backgroundColor:'#333'
+		//backgroundImage:'ui/images/bg.png',
+		//backgroundRepeat:true
+		backgroundColor:Ti.UI.iOS.COLOR_UNDER_PAGE_BACKGROUND
 	});
 	
 	win.add(loading);
@@ -79,15 +82,17 @@ module.exports = function() {
 	var newWin = null;
 	var miniMenu = null;
 	var articleWin = null;
+	var configWin = null;
 	
 	var MyView = require(Mods.view);
 	var MyMenu = require(Mods.menu);
 	var MyArticle = require(Mods.article);
+	var MyConfig = require(Mods.config);
 	
 	function openCategory(subcategories) {
 		
 		if (!miniMenu) {
-			miniMenu = MyMenu(goHome, openCategory);
+			miniMenu = MyMenu(goHome, openCategory, openConfig);
 			win.add(miniMenu);
 			miniMenu.animate({opacity:1});
 		}
@@ -169,6 +174,19 @@ module.exports = function() {
 		
 		win.add(articleWin);
 		
+	}
+	
+	function openConfig() {
+		
+		configWin = MyConfig();
+		
+		configWin.open({
+			//modalStyle:Ti.UI.iPhone.MODAL_TRANSITION_STYLE_CROSS_DISSOLVE,
+			//modalTransitionStyle:Ti.UI.iPhone.MODAL_PRESENTATION_FULLSCREEN
+			modalStyle:Ti.UI.iPhone.MODAL_PRESENTATION_FORMSHEET,
+			modalTransitionStyle:Ti.UI.iPhone.MODAL_TRANSITION_STYLE_CROSS_DISSOLVE
+		});
+		 
 	}
 	
 	return win;

@@ -18,6 +18,7 @@ module.exports = {
 	 */
 	homeSection: '/ui/elements/homeSection',
 	menu: '/ui/elements/menu',
+	config: '/ui/elements/config',
 	
 	/*
 	 * BBDD

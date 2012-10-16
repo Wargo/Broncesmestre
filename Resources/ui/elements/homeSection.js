@@ -27,19 +27,24 @@ module.exports = function(category, f_callback) {
 	});
 	
 	var titleView = Ti.UI.createView({
-		height:50,
+		height:70,
 		backgroundColor:'#333',
 		opacity:.8,
 		bottom:0
 	});
 	
 	var title = Ti.UI.createLabel($$.homeBlockText);
-	//title.text = category.num ? (category.name + ' (' + category.num + ')') : category.name;
 	title.text = category.name;
+	
+	var icon = Ti.UI.createImageView({
+		image:category.icon,
+		left:15,
+	});
 	
 	view.add(image);
 	view.add(titleView);
 	view.add(title);
+	titleView.add(icon);
 
 	view._image = image;
 	

@@ -11,22 +11,22 @@ module.exports = {
 	textMenu: {
 		font:{fontSize:18, fontFamily:font},
 		color:'#FFF',
-		left:10
+		left:70
 	},
 	
 	homeBlockText: {
-		bottom:15,
+		bottom:20,
 		font:{fontSize:24, fontFamily:font},
 		color:'#FFF',
 		shadowColor:'#000',
-		shadowOffset:{x:1,y:1}
+		shadowOffset:{x:1,y:1},
+		left:75
 	},
 	
 	homeBtn: {
-		height:30,
+		height:50,
 		top:20,
-		left:10,
-		backgroundColor:'#111'
+		left:5
 	},
 	
 	articleTitle: {
