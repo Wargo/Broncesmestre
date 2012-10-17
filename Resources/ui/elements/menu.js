@@ -49,7 +49,11 @@ module.exports = function(f_callback_back, f_callback_category, f_callback_confi
 	back.addEventListener('click', function() {
 		f_callback_back();
 	});
-		
+	
+	var icon = Ti.UI.createImageView({
+		image:'ui/images/tools.png',
+		left:10,
+	});
 	var config = Ti.UI.createView($$.homeBtn);
 	var text = Ti.UI.createLabel($$.textMenu);
 	text.text = L('config');
