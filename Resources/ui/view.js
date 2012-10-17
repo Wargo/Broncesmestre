@@ -1,4 +1,6 @@
 
+var ImageFactory = require('ti.imagefactory');
+
 var Mods = require('/modules');
 
 var $$ = require(Mods.styles);
@@ -42,9 +44,8 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 	
 	var tableView = Ti.UI.createTableView({
 		separatorStyle:Ti.UI.iPhone.TableViewSeparatorStyle.NONE,
-		top:20,
-		left:20,
-		width:560
+		width:600,
+		backgroundColor:'#EEE'
 	});
 
 /*
@@ -60,7 +61,7 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 		for	(i in subcategories) {
 			
 			var row = Ti.UI.createTableViewRow({
-				selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE,
+				//selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE,
 				height:100
 			});
 			
@@ -71,7 +72,8 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 			var title = Ti.UI.createLabel($$.text);
 			title.top = 10;
 			title.height = 30;
-			title.left = 100;
+			title.left = 110;
+			title.right = 10;
 			if (subcategories[i].num) {
 				title.text = subcategories[i].name + ' (' + subcategories[i].num + ')';
 			} else {
@@ -81,16 +83,33 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 			var text = Ti.UI.createLabel($$.text);
 			text.top = 40;
 			text.height = 50;
-			text.left = 100;
+			text.left = 110;
+			text.right = 10;
 			text.color = '#999';
 			text.text = subcategories[i].text;
 			
 			var image = Ti.UI.createImageView({
-				left:0,
+				left:10,
+				opacity:0,
 				image:subcategories[i].image,
 				width:80,
 				height:'100%',
-				borderRadius:5
+				_firstLoad:true
+			});
+			
+			image.addEventListener('load', function(e) {
+				if (e.source._firstLoad) {
+					var thumb = ImageFactory.imageAsThumbnail(e.source.toBlob(), {
+						size:70,
+						borderSize:5,
+						cornerRadius:10,
+						quality:ImageFactory.QUALITY_HIGH
+					});
+					e.source.image = thumb;
+					e.source._firstLoad = false;
+				} else {
+					e.source.animate({opacity:1});
+				}
 			});
 			
 			/*
@@ -103,15 +122,15 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 			});
 			*/
 			
-			var separator = Ti.UI.createView({
-				height:1,
-				top:0,
-				backgroundColor:'#CCC'
-			});
+			var separatorTop = Ti.UI.createView($$.separatorTop);
+			separatorTop.backgroundColor = '#8FFF';
+			var separatorBottom = Ti.UI.createView($$.separatorBottom);
+			separatorBottom.backgroundColor = '#5CCC';
 			
-			if (i > 0) {
-				content.add(separator);
-			}
+			//if (i > 0) {
+				content.add(separatorTop);
+				content.add(separatorBottom);
+			//}
 			
 			content.add(title);
 			content.add(text);
@@ -143,7 +162,7 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 	var currentTime = 0;
 	
 	view.addEventListener('swipe', function(e) {
-		if (!e.source._canMove) {
+		if (!view._canMove) {
 			return;
 		}
 		if (e.direction == 'left') {
@@ -153,17 +172,17 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 		}
 		if (move) {
 			if (e.direction == 'right') {
-				e.source.animate({left:1000, opacity:0}, function() {
-					e.source.parent.remove(e.source);
+				view.animate({left:1000, opacity:0}, function() {
+					view.parent.remove(view);
 				});
 			} else {
-				e.source.animate({left:width + moveTo}, function() {
-					e.source.animate({left:width});
+				view.animate({left:width + moveTo}, function() {
+					view.animate({left:width});
 				});
 			}
 		} else {
-			e.source.animate({left:width + moveTo}, function() {
-				e.source.animate({left:width});
+			view.animate({left:width + moveTo}, function() {
+				view.animate({left:width});
 			});
 		}
 	});

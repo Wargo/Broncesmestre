@@ -88,19 +88,19 @@ module.exports = function(article) {
 		}
 		if (move) {
 			if (e.direction == 'right') {
-				e.source.animate({left:1000, opacity:0}, function() {
-					e.source.parent.remove(e.source);
+				view.animate({left:1000, opacity:0}, function() {
+					view.parent.remove(view);
 				});
-				e.source._parent.animate({left:400});
-				e.source._parent._canMove = true;
+				view._parent.animate({left:400});
+				view._parent._canMove = true;
 			} else {
-				e.source.animate({left:width + moveTo}, function() {
-					e.source.animate({left:width});
+				view.animate({left:width + moveTo}, function() {
+					view.animate({left:width});
 				});
 			}
 		} else {
-			e.source.animate({left:width + moveTo}, function() {
-				e.source.animate({left:width});
+			view.animate({left:width + moveTo}, function() {
+				view.animate({left:width});
 			});
 		}
 	});

@@ -53,13 +53,13 @@ module.exports = {
 	},
 	
 	separatorTop: {
-		height:2,
+		height:1,
 		top:0,
 		backgroundColor:'#5333'
 	},
 	
 	separatorBottom: {
-		height:2,
+		height:1,
 		bottom:0,
 		backgroundColor:'#5000'
 	}
