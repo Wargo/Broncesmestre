@@ -8,6 +8,7 @@ module.exports = function(article) {
 	var article = new Object();
 	
 	article.title = 'Modelo 120500 - Pomito de latón Modelo Sol';
+	article.text = '120500.000.01\r\r120500.000.21\r\r120500.000.45\r\r120500.000.50'
 	article.images = [
 		{url:'http://www.broncesmestre.com/catalogo/articulos/miniatura_ambiente/130513.000.95', big:'http://www.broncesmestre.com/catalogo/articulos/imagen_ambiente/130513.000.95'},
 		{url:'http://www.broncesmestre.com/catalogo/articulos/miniatura_ambiente/120503.000.21', big:'http://www.broncesmestre.com/catalogo/articulos/imagen_ambiente/120503.000.21'},
