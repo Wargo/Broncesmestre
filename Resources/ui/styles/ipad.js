@@ -4,7 +4,7 @@ var font = 'Gill Sans'
 module.exports = {
 	
 	text: {
-		font:{fontSize:14, fontFamily:font},
+		font:{fontSize:16, fontFamily:font},
 		color:'#333'
 	},
 	
@@ -47,6 +47,7 @@ module.exports = {
 	
 	articleImages: {
 		top:0,
+		right:0,
 		height:300,
 		showPagingControl:true
 	},

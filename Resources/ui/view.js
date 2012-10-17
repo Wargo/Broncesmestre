@@ -88,7 +88,16 @@ module.exports = function(subcategories, f_callback, width, move) {
 				left:0,
 				image:subcategories[i].image,
 				width:80,
-				height:'100%'
+				height:'100%',
+				borderRadius:5
+			});
+			
+			image.addEventListener('postlayout', function(e) {
+				e.source.setShadow({
+					shadowOffset:{x:5,y:5},
+					shadowRadius:5,
+					shadowOpacity:0.5
+				});
 			});
 			
 			content.add(title);
