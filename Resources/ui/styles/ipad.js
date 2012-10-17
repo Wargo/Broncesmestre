@@ -4,7 +4,7 @@ var font = 'Gill Sans'
 module.exports = {
 	
 	text: {
-		font:{fontSize:16, fontFamily:font},
+		font:{fontSize:18, fontFamily:font},
 		color:'#333'
 	},
 	

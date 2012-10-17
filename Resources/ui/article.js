@@ -21,7 +21,9 @@ module.exports = function(article) {
 		width:724
 	});
 	
-	var tableView = Ti.UI.createTableView();
+	var tableView = Ti.UI.createTableView({
+		separatorStyle:Ti.UI.iPhone.TableViewSeparatorStyle.NONE
+	});
 	var row = Ti.UI.createTableViewRow({
 		selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
 	});
@@ -78,13 +80,41 @@ module.exports = function(article) {
 	var startTime = 0;
 	var currentTime = 0;
 	
+	view.addEventListener('swipe', function(e) {
+		if (e.direction == 'left') {
+			var moveTo = -100;
+		} else {
+			var moveTo = 100;
+		}
+		if (move) {
+			if (e.direction == 'right') {
+				e.source.animate({left:1000, opacity:0}, function() {
+					e.source.parent.remove(e.source);
+				});
+				e.source._parent.animate({left:400});
+				e.source._parent._canMove = true;
+			} else {
+				e.source.animate({left:width + moveTo}, function() {
+					e.source.animate({left:width});
+				});
+			}
+		} else {
+			e.source.animate({left:width + moveTo}, function() {
+				e.source.animate({left:width});
+			});
+		}
+	});
+	
+	/*
 	view.addEventListener('touchstart', function(e) {
 		view._x = e.x;
 		init = e.globalPoint.y;
 		startTime = new Date().getTime();
+		Ti.API.error('a')
 	});
 	
 	view.addEventListener('touchmove', function(e) {
+		Ti.API.error('b')
 		currentTime = new Date().getTime();
 		
 		if (currentTime < startTime + 50) {
@@ -119,6 +149,7 @@ module.exports = function(article) {
 	});
 	
 	view.addEventListener('touchend', function(e) {
+		Ti.API.error('c')
 		if (move) {
 			if (left >= Ti.Platform.displayCaps.getPlatformWidth() - 300) {
 				view.animate({opacity:0});
@@ -134,6 +165,7 @@ module.exports = function(article) {
 		tableView.scrollable = true;
 		Ti.App._drawShadows = true;
 	});
+	*/
 	
 	view.add(tableView);
 	

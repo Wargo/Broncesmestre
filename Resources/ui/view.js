@@ -5,7 +5,7 @@ var $$ = require(Mods.styles);
 
 require('ti.viewshadow');
 
-module.exports = function(subcategories, f_callback, width, move) {
+module.exports = function(subcategories, f_callback, width, move, win) {
 	
 	var view = Ti.UI.createView({
 		backgroundColor:'#FFF',
@@ -34,25 +34,26 @@ module.exports = function(subcategories, f_callback, width, move) {
 				shadowRadius:15,
 				shadowOpacity:0.6
 			});
-			Ti.API.error('sombra');
 		} else {
 			view.borderColor = '#CCC';
 			view.borderWidth = 1;
-			Ti.API.error('no sombra');
 		}
 	});
 	
 	var tableView = Ti.UI.createTableView({
+		separatorStyle:Ti.UI.iPhone.TableViewSeparatorStyle.NONE,
 		top:20,
 		left:20,
 		width:560
 	});
 
+/*
 	if (subcategories.length <= 7) {
 		tableView.height = 100 * subcategories.length;
 	} else {
 		tableView.bottom = 20;
 	}
+*/
 	
 	setTimeout(function() {
 	
@@ -92,6 +93,7 @@ module.exports = function(subcategories, f_callback, width, move) {
 				borderRadius:5
 			});
 			
+			/*
 			image.addEventListener('postlayout', function(e) {
 				e.source.setShadow({
 					shadowOffset:{x:5,y:5},
@@ -99,6 +101,17 @@ module.exports = function(subcategories, f_callback, width, move) {
 					shadowOpacity:0.5
 				});
 			});
+			*/
+			
+			var separator = Ti.UI.createView({
+				height:1,
+				top:0,
+				backgroundColor:'#CCC'
+			});
+			
+			if (i > 0) {
+				content.add(separator);
+			}
 			
 			content.add(title);
 			content.add(text);
@@ -129,7 +142,33 @@ module.exports = function(subcategories, f_callback, width, move) {
 	var startTime = 0;
 	var currentTime = 0;
 	
-	view.addEventListener('touchstart', function(e) {
+	view.addEventListener('swipe', function(e) {
+		if (!e.source._canMove) {
+			return;
+		}
+		if (e.direction == 'left') {
+			var moveTo = -100;
+		} else {
+			var moveTo = 100;
+		}
+		if (move) {
+			if (e.direction == 'right') {
+				e.source.animate({left:1000, opacity:0}, function() {
+					e.source.parent.remove(e.source);
+				});
+			} else {
+				e.source.animate({left:width + moveTo}, function() {
+					e.source.animate({left:width});
+				});
+			}
+		} else {
+			e.source.animate({left:width + moveTo}, function() {
+				e.source.animate({left:width});
+			});
+		}
+	});
+	/*
+	win.addEventListener('touchstart', function(e) {
 		if (!view._canMove) {
 			return;
 		}
@@ -138,7 +177,7 @@ module.exports = function(subcategories, f_callback, width, move) {
 		startTime = new Date().getTime();
 	});
 	
-	view.addEventListener('touchmove', function(e) {
+	win.addEventListener('touchmove', function(e) {
 		
 		if (!view._canMove) {
 			return;
@@ -174,7 +213,7 @@ module.exports = function(subcategories, f_callback, width, move) {
 		
 	});
 	
-	view.addEventListener('touchend', function(e) {
+	win.addEventListener('touchend', function(e) {
 		if (!view._canMove) {
 			return;
 		}
@@ -192,6 +231,7 @@ module.exports = function(subcategories, f_callback, width, move) {
 		tableView.scrollable = true;
 		Ti.App._drawShadows = true;
 	});
+	*/
 	
 	return view;
 	

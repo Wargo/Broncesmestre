@@ -111,7 +111,7 @@ module.exports = function() {
 		header.animate({opacity:0});
 		logo.animate({opacity:0});
 		
-		newWin = MyView(subcategories, openSubcategory, 200, false);
+		newWin = MyView(subcategories, openSubcategory, 200, false, win);
 		win.add(newWin);
 		newWin.animate({left:200});
 		
@@ -152,7 +152,7 @@ module.exports = function() {
 			win.remove(articleWin);
 		}
 		
-		otherWin = MyView(aux, openArticle, 400, true);
+		otherWin = MyView(aux, openArticle, 400, true, win);
 		
 		otherWin.animate({left:400});
 		
