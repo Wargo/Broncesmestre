@@ -139,6 +139,10 @@ module.exports = function() {
 	function openSubcategory(subcategory) {
 		var aux = [];
 		
+		subcategory.name = 'Modelo 120500 - Pomito de latón Modelo Sol';
+		subcategory.text = '120500.000.01';
+		subcategory.num = 0;
+		
 		aux.push(subcategory);
 		aux.push(subcategory);
 		aux.push(subcategory);

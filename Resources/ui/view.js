@@ -62,7 +62,8 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 			
 			var row = Ti.UI.createTableViewRow({
 				//selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE,
-				height:100
+				height:100,
+				hasChild:true
 			});
 			
 			var content = Ti.UI.createView({
@@ -70,7 +71,7 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 			});
 			
 			var title = Ti.UI.createLabel($$.text);
-			title.top = 10;
+			title.top = 15;
 			title.height = 30;
 			title.left = 110;
 			title.right = 10;
