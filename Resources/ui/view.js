@@ -11,6 +11,7 @@ module.exports = function(subcategories, f_callback, width, move) {
 		backgroundColor:'#FFF',
 		left:Ti.Platform.displayCaps.platformWidth - 1,
 		width:600,
+		borderRadius:5,
 		_itsMe:true,
 		_canMove:true
 	});
@@ -24,11 +25,16 @@ module.exports = function(subcategories, f_callback, width, move) {
 	loader.show();
 	
 	view.addEventListener('postlayout', function() {
-		view.setShadow({
-			shadowOffset:{x:0,y:0},
-			shadowRadius:15,
-			shadowOpacity:0.6
-		});
+		if (Ti.App.Properties.getBool('shadows', true)) {
+			view.setShadow({
+				shadowOffset:{x:0,y:0},
+				shadowRadius:15,
+				shadowOpacity:0.6
+			});
+		} else {
+			view.borderColor = '#CCC';
+			view.borderWidth = 1;
+		}
 	});
 	
 	var tableView = Ti.UI.createTableView({
@@ -126,7 +132,7 @@ module.exports = function(subcategories, f_callback, width, move) {
 		
 		currentTime = new Date().getTime();
 		
-		if (currentTime < startTime + 100) {
+		if (currentTime < startTime + 50) {
 			return;
 		}
 		

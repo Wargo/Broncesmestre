@@ -32,11 +32,16 @@ module.exports = function(article) {
 	tableView.appendRow(row);
 
 	view.addEventListener('postlayout', function() {
-		view.setShadow({
-			shadowOffset:{x:0,y:0},
-			shadowRadius:15,
-			shadowOpacity:0.6
-		});
+		if (Ti.App.Properties.getBool('shadows', true)) {
+			view.setShadow({
+				shadowOffset:{x:0,y:0},
+				shadowRadius:15,
+				shadowOpacity:0.6
+			});
+		} else {
+			view.borderColor = '#CCC';
+			view.borderWidth = 1;
+		}
 	});
 	
 	var title = Ti.UI.createLabel($$.articleTitle);
@@ -77,7 +82,7 @@ module.exports = function(article) {
 	view.addEventListener('touchmove', function(e) {
 		currentTime = new Date().getTime();
 		
-		if (currentTime < startTime + 100) {
+		if (currentTime < startTime + 50) {
 			return;
 		}
 		

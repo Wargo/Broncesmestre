@@ -40,6 +40,17 @@ module.exports = function() {
 		view.close({opacity:0});
 	});
 	
+	var shadows = Ti.UI.createSwitch({
+		value:Ti.App.Properties.getBool('shadows', true),
+		top:100
+	});
+	
+	shadows.addEventListener('change', function(e) {
+		Ti.App.Properties.setBool('shadows', e.value);
+	});
+	
+	view.add(shadows);
+	
 	return view;
 	
 }

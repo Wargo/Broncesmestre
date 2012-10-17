@@ -104,7 +104,8 @@ module.exports = function() {
 			win.remove(articleWin);
 		}
 		
-		scrollView.animate({opacity:0});
+		//scrollView.animate({opacity:0});
+		win.remove(scrollView);
 		header.animate({opacity:0});
 		logo.animate({opacity:0});
 		
@@ -115,7 +116,8 @@ module.exports = function() {
 	}
 	
 	function goHome() {
-		scrollView.animate({opacity:1});
+		win.add(scrollView);
+		//scrollView.animate({opacity:1});
 		header.animate({opacity:0.7});
 		logo.animate({opacity:1});
 
