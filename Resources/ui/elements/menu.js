@@ -13,16 +13,24 @@ module.exports = function(f_callback_back, f_callback_category, f_callback_confi
 		layout:'vertical'
 	});
 	
+	var separatorTop = Ti.UI.createView($$.separatorTop);
+	var separatorBottom = Ti.UI.createView($$.separatorBottom);
+	
 	var back = Ti.UI.createView($$.homeBtn);
 	var text = Ti.UI.createLabel($$.textMenu);
 	text.text = L('back');
 	back.add(text);
+	back.add(separatorTop);
+	back.add(separatorBottom);
 	back.top = 50;
 	
 	view.add(back);
 	
 	for (i in Ti.App.data) {
-		
+	
+		var separatorTop = Ti.UI.createView($$.separatorTop);
+		var separatorBottom = Ti.UI.createView($$.separatorBottom);
+			
 		var btn = Ti.UI.createView($$.homeBtn);
 		var text = Ti.UI.createLabel($$.textMenu);
 		text.text = Ti.App.data[i].name;
@@ -33,8 +41,10 @@ module.exports = function(f_callback_back, f_callback_category, f_callback_confi
 			left:10,
 		});
 		
+		btn.add(separatorTop);
 		btn.add(icon);
 		btn.add(text);
+		btn.add(separatorBottom);
 		view.add(btn);
 		
 		btn.addEventListener('click', function(e) {
@@ -50,6 +60,9 @@ module.exports = function(f_callback_back, f_callback_category, f_callback_confi
 		f_callback_back();
 	});
 	
+	var separatorTop = Ti.UI.createView($$.separatorTop);
+	var separatorBottom = Ti.UI.createView($$.separatorBottom);
+	
 	var icon = Ti.UI.createImageView({
 		image:'ui/images/tools.png',
 		left:10,
@@ -59,6 +72,8 @@ module.exports = function(f_callback_back, f_callback_category, f_callback_confi
 	text.text = L('config');
 	config.add(icon);
 	config.add(text);
+	config.add(separatorTop);
+	config.add(separatorBottom);
 	config.top = 350;
 	view.add(config);
 	
