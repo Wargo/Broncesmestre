@@ -166,7 +166,7 @@ module.exports = function() {
 		articleWin._parent = otherWin;
 		
 		articleWin.animate({left:300});
-		otherWin.animate({left:100});
+		otherWin.animate({left:75});
 		
 		otherWin._canMove = false;
 		

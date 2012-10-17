@@ -57,8 +57,9 @@ module.exports = function(f_callback_back, f_callback_category, f_callback_confi
 	var config = Ti.UI.createView($$.homeBtn);
 	var text = Ti.UI.createLabel($$.textMenu);
 	text.text = L('config');
+	config.add(icon);
 	config.add(text);
-	config.top = 50;
+	config.top = 350;
 	view.add(config);
 	
 	config.addEventListener('click', function() {
