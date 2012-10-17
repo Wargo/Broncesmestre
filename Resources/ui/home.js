@@ -5,6 +5,8 @@ var $$ = require(Mods.styles);
 
 module.exports = function() {
 	
+	Ti.App._drawShadows = true;
+	
 	var loading = Ti.UI.createActivityIndicator({
 		message:L('loading'),
 		color:'white'

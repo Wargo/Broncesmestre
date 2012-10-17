@@ -32,6 +32,9 @@ module.exports = function(article) {
 	tableView.appendRow(row);
 
 	view.addEventListener('postlayout', function() {
+		if (!Ti.App._drawShadows) {
+			return;
+		}
 		if (Ti.App.Properties.getBool('shadows', true)) {
 			view.setShadow({
 				shadowOffset:{x:0,y:0},
@@ -87,6 +90,7 @@ module.exports = function(article) {
 		}
 		
 		tableView.scrollable = false;
+		Ti.App._drawShadows = false;
 		
 		if (Ti.UI.orientation === 3) {
 			if (move) {
@@ -126,6 +130,7 @@ module.exports = function(article) {
 		}
 		view.animate({left:width});
 		tableView.scrollable = true;
+		Ti.App._drawShadows = true;
 	});
 	
 	view.add(tableView);

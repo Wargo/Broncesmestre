@@ -25,15 +25,20 @@ module.exports = function(subcategories, f_callback, width, move) {
 	loader.show();
 	
 	view.addEventListener('postlayout', function() {
+		if (!Ti.App._drawShadows) {
+			return;
+		}
 		if (Ti.App.Properties.getBool('shadows', true)) {
 			view.setShadow({
 				shadowOffset:{x:0,y:0},
 				shadowRadius:15,
 				shadowOpacity:0.6
 			});
+			Ti.API.error('sombra');
 		} else {
 			view.borderColor = '#CCC';
 			view.borderWidth = 1;
+			Ti.API.error('no sombra');
 		}
 	});
 	
@@ -136,6 +141,8 @@ module.exports = function(subcategories, f_callback, width, move) {
 			return;
 		}
 		
+		Ti.App._drawShadows = false;
+		
 		tableView.scrollable = false;
 		
 		if (Ti.UI.orientation === 3) {
@@ -174,6 +181,7 @@ module.exports = function(subcategories, f_callback, width, move) {
 		}
 		view.animate({left:width});
 		tableView.scrollable = true;
+		Ti.App._drawShadows = true;
 	});
 	
 	return view;
