@@ -129,36 +129,32 @@ module.exports = function(subcategories, f_callback, width, move) {
 		if (!view._canMove) {
 			return;
 		}
-		
+		/*
 		currentTime = new Date().getTime();
 		
 		if (currentTime < startTime + 50) {
 			return;
 		}
-		
+		*/
 		tableView.scrollable = false;
 		
 		if (Ti.UI.orientation === 3) {
 			if (move) {
 				left = e.globalPoint.y - view._x;
-				if (left <= 300) {
-					return;
-				}
 			} else {
 				left = e.globalPoint.y - view._x - (e.globalPoint.y - init) / 2;
 			}
-			view.animate({left:left, duration:1});
 		} else if (Ti.UI.orientation === 4) {
 			if (move) {
 				left = Ti.Platform.displayCaps.getPlatformWidth() - e.globalPoint.y - view._x;
-				if (left <= 300) {
-					return;
-				}
 			} else {
 				left = Ti.Platform.displayCaps.getPlatformWidth() - e.globalPoint.y - view._x + (e.globalPoint.y - init) / 2;
 			}
-			view.animate({left:left, duration:1});
 		}
+		if (left <= 300) {
+			return;
+		}
+		view.animate({left:left, duration:1});
 		
 	});
 	
