@@ -24,9 +24,9 @@ module.exports = {
 	},
 	
 	homeBtn: {
-		height:50,
+		height:60,
 		//top:20,
-		left:5
+		//left:5
 	},
 	
 	articleTitle: {
@@ -52,15 +52,15 @@ module.exports = {
 	},
 	
 	separatorTop: {
-		height:1,
+		height:2,
 		top:0,
-		backgroundColor:'#CCC'
+		backgroundColor:'#5333'
 	},
 	
 	separatorBottom: {
-		height:1,
+		height:2,
 		bottom:0,
-		backgroundColor:'#222'
+		backgroundColor:'#5000'
 	}
 	
 }

@@ -13,16 +13,31 @@ module.exports = function(f_callback_back, f_callback_category, f_callback_confi
 		layout:'vertical'
 	});
 	
+	var logo = Ti.UI.createImageView({
+		image:'ui/images/logo_white.png',
+		width:180
+	});
+	
+	view.add(logo);
+	
 	var separatorTop = Ti.UI.createView($$.separatorTop);
 	var separatorBottom = Ti.UI.createView($$.separatorBottom);
 	
 	var back = Ti.UI.createView($$.homeBtn);
 	var text = Ti.UI.createLabel($$.textMenu);
+	var icon = Ti.UI.createImageView({
+		image:'ui/images/back.png',
+		left:20,
+		//width:50,
+		//height:50
+	});
 	text.text = L('back');
+	back.add(icon);
 	back.add(text);
 	back.add(separatorTop);
 	back.add(separatorBottom);
-	back.top = 50;
+	back.top = 30;
+	back.bottom = 50;
 	
 	view.add(back);
 	
@@ -39,6 +54,8 @@ module.exports = function(f_callback_back, f_callback_category, f_callback_confi
 		var icon = Ti.UI.createImageView({
 			image:Ti.App.data[i].icon,
 			left:10,
+			width:50,
+			height:50
 		});
 		
 		btn.add(separatorTop);
@@ -74,7 +91,7 @@ module.exports = function(f_callback_back, f_callback_category, f_callback_confi
 	config.add(text);
 	config.add(separatorTop);
 	config.add(separatorBottom);
-	config.top = 350;
+	config.top = 280;
 	view.add(config);
 	
 	config.addEventListener('click', function() {
