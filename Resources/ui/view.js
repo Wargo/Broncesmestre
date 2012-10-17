@@ -129,13 +129,13 @@ module.exports = function(subcategories, f_callback, width, move) {
 		if (!view._canMove) {
 			return;
 		}
-		/*
+		
 		currentTime = new Date().getTime();
 		
 		if (currentTime < startTime + 50) {
 			return;
 		}
-		*/
+		
 		tableView.scrollable = false;
 		
 		if (Ti.UI.orientation === 3) {
@@ -151,7 +151,7 @@ module.exports = function(subcategories, f_callback, width, move) {
 				left = Ti.Platform.displayCaps.getPlatformWidth() - e.globalPoint.y - view._x + (e.globalPoint.y - init) / 2;
 			}
 		}
-		if (left <= 300) {
+		if (move && left <= 300) {
 			return;
 		}
 		view.animate({left:left, duration:1});
