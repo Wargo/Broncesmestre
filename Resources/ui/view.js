@@ -45,7 +45,8 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 	var tableView = Ti.UI.createTableView({
 		separatorStyle:Ti.UI.iPhone.TableViewSeparatorStyle.NONE,
 		width:600,
-		backgroundColor:'#EEE'
+		backgroundColor:'#EEE',
+		borderRadius:5
 	});
 
 /*
@@ -64,8 +65,7 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 			
 			var row = Ti.UI.createTableViewRow({
 				selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE,
-				height:100,
-				hasChild:true
+				height:100
 			});
 			
 			var content = Ti.UI.createView({
@@ -76,7 +76,7 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 			title.top = 15;
 			title.height = 30;
 			title.left = 110;
-			title.right = 10;
+			title.right = 30;
 			if (subcategories[i].num) {
 				title.text = subcategories[i].name + ' (' + subcategories[i].num + ')';
 			} else {
@@ -87,7 +87,7 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 			text.top = 40;
 			text.height = 50;
 			text.left = 110;
-			text.right = 10;
+			text.right = 30;
 			text.color = '#999';
 			text.text = subcategories[i].text;
 			
@@ -98,6 +98,12 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 				width:80,
 				height:'100%',
 				_firstLoad:true
+			});
+			
+			var arrow = Ti.UI.createImageView({
+				image:'ui/images/arrow.png',
+				right:10,
+				width:15
 			});
 			
 			image.addEventListener('load', function(e) {
@@ -128,7 +134,7 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 			var separatorTop = Ti.UI.createView($$.separatorTop);
 			separatorTop.backgroundColor = '#8FFF';
 			var separatorBottom = Ti.UI.createView($$.separatorBottom);
-			separatorBottom.backgroundColor = '#5CCC';
+			separatorBottom.backgroundColor = '#5BBB';
 			
 			//if (i > 0) {
 				content.add(separatorTop);
@@ -138,6 +144,7 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 			content.add(title);
 			content.add(text);
 			content.add(image);
+			content.add(arrow);
 			
 			row.add(content);
 			
