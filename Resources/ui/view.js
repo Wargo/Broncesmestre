@@ -91,34 +91,43 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 			text.color = '#999';
 			text.text = subcategories[i].text;
 			
-			var image = Ti.UI.createImageView({
-				left:10,
-				opacity:0,
-				image:subcategories[i].image,
-				width:80,
-				height:'100%',
-				_firstLoad:true
+			var file = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory + subcategories[i].md5 + '.jpg');
+			
+			if (file.exists()) {
+				var image = Ti.UI.createImageView({
+					left:10,
+					opacity:0,
+					image:file,
+					_firstLoad:false
+				})
+			} else {
+				var image = Ti.UI.createImageView({
+					left:10,
+					opacity:0,
+					image:subcategories[i].image,
+					_firstLoad:true,
+					_file:file
+				});
+			}
+			
+			image.addEventListener('load', function(e) {
+				if (e.source._firstLoad) {
+					var thumb = newBlob = ImageFactory.imageTransform(e.source.toBlob(),
+						{ type:ImageFactory.TRANSFORM_CROP, width:80, height:80 },
+						{ type:ImageFactory.TRANSFORM_ROUNDEDCORNER, borderSize:1, cornerRadius:10 }
+					);
+					e.source.image = thumb;
+					e.source._firstLoad = false;
+					e.source._file.write(thumb);
+				} else {
+					e.source.animate({opacity:1});
+				}
 			});
 			
 			var arrow = Ti.UI.createImageView({
 				image:'ui/images/arrow.png',
 				right:10,
 				width:15
-			});
-			
-			image.addEventListener('load', function(e) {
-				if (e.source._firstLoad) {
-					var thumb = ImageFactory.imageAsThumbnail(e.source.toBlob(), {
-						size:70,
-						borderSize:5,
-						cornerRadius:10,
-						quality:ImageFactory.QUALITY_HIGH
-					});
-					e.source.image = thumb;
-					e.source._firstLoad = false;
-				} else {
-					e.source.animate({opacity:1});
-				}
 			});
 			
 			/*
