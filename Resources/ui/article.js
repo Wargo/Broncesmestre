@@ -93,6 +93,9 @@ module.exports = function(article) {
 				});
 				view._parent.animate({left:400});
 				view._parent._canMove = true;
+				for (x in view._parent._rows) {
+					view._parent._rows[x].backgroundColor = 'transparent';
+				}
 			} else {
 				view.animate({left:width + moveTo}, function() {
 					view.animate({left:width});

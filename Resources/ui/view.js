@@ -56,12 +56,14 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 	}
 */
 	
+	var rows = [];
+	
 	setTimeout(function() {
 	
 		for	(i in subcategories) {
 			
 			var row = Ti.UI.createTableViewRow({
-				//selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE,
+				selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE,
 				height:100,
 				hasChild:true
 			});
@@ -143,18 +145,26 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 			
 			row._current = subcategories[i]
 			
-			row.addEventListener('click', function(e) {
-				if (f_callback) {
-					f_callback(e.row._current);
-				}
-			});
+			rows.push(row);
 			
 		}
 		
 		view.add(tableView);
 		loader.hide();
+		
+		view._rows = rows;
 	
 	}, 100);
+	
+	tableView.addEventListener('click', function(e) {
+		if (f_callback) {
+			for (x in rows) {
+				rows[x].backgroundColor = 'transparent';
+			}
+			e.row.backgroundColor = '#CCC';
+			f_callback(e.row._current);
+		}
+	});
 	
 	var init = null;
 	var left = null;
@@ -175,6 +185,9 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 			if (e.direction == 'right') {
 				view.animate({left:1000, opacity:0}, function() {
 					view.parent.remove(view);
+					for (x in view._parent._rows) {
+						view._parent._rows[x].backgroundColor = 'transparent';
+					}
 				});
 			} else {
 				view.animate({left:width + moveTo}, function() {

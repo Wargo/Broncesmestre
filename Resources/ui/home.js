@@ -158,6 +158,8 @@ module.exports = function() {
 		
 		otherWin = MyView(aux, openArticle, 400, true, win);
 		
+		otherWin._parent = newWin;
+		
 		otherWin.animate({left:400});
 		
 		win.add(otherWin);
