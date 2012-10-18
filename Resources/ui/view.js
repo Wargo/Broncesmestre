@@ -98,6 +98,7 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 					left:10,
 					opacity:0,
 					image:file,
+					borderRadius:10,
 					_firstLoad:false
 				})
 			} else {
@@ -114,7 +115,7 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 				if (e.source._firstLoad) {
 					var thumb = newBlob = ImageFactory.imageTransform(e.source.toBlob(),
 						{ type:ImageFactory.TRANSFORM_CROP, width:80, height:80 },
-						{ type:ImageFactory.TRANSFORM_ROUNDEDCORNER, borderSize:1, cornerRadius:10 }
+						{ type:ImageFactory.TRANSFORM_ROUNDEDCORNER, borderSize:0, cornerRadius:10 }
 					);
 					e.source.image = thumb;
 					e.source._firstLoad = false;
