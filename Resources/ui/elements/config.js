@@ -4,28 +4,23 @@ module.exports = function() {
 	var view = Ti.UI.createWindow({
 		backgroundColor:'white',
 		modal:true,
-	});
-	
-	view.addEventListener('postlayout', function() {
-		view.setShadow({
-			shadowOffset:{x:0,y:0},
-			shadowRadius:15,
-			shadowOpacity:0.8
-		});
-	});
-	
-	var deleteData = Ti.UI.createButton({
-		title:L('delete')
+		layout:'vertical'
 	});
 	
 	var close = Ti.UI.createButton({
-		title:L('close'),
-		right:5,
-		top:5
+		title:L('close')
 	});
 	
-	view.add(deleteData);
 	view.rightNavButton = close;
+	
+	close.addEventListener('click', function() {
+		view.close();
+	});
+	
+	var deleteData = Ti.UI.createButton({
+		title:L('delete'),
+		top:20
+	});
 	
 	deleteData.addEventListener('click', function() {
 		Ti.App.Properties.removeProperty('bbdd');
@@ -36,20 +31,29 @@ module.exports = function() {
 		}).show();
 	});
 	
-	close.addEventListener('click', function() {
-		view.close({opacity:0});
-	});
-	
 	var shadows = Ti.UI.createSwitch({
 		value:Ti.App.Properties.getBool('shadows', true),
-		top:100
+		top:20
 	});
 	
 	shadows.addEventListener('change', function(e) {
 		Ti.App.Properties.setBool('shadows', e.value);
 	});
 	
+	var forceImages = Ti.UI.createSwitch({
+		value:Ti.App.Properties.getBool('forceImages', false),
+		top:20
+	});
+	
+	forceImages.addEventListener('change', function(e) {
+		Ti.App.Properties.setBool('forceImages', e.value);
+	});
+	
+	view.add(Ti.UI.createLabel({text:'sombras', top:30}));
 	view.add(shadows);
+	view.add(Ti.UI.createLabel({text:'Recargar imágenes', top:30}));
+	view.add(forceImages);
+	view.add(deleteData);
 	
 	return view;
 	

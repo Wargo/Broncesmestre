@@ -91,7 +91,18 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 			text.color = '#999';
 			text.text = subcategories[i].text;
 			
+			var shadow = Ti.UI.createImageView({
+				opacity:0,
+				image:'ui/images/shadow.png',
+				left:6,
+				top:7
+			});
+			
 			var file = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory + subcategories[i].md5 + '.jpg');
+			
+			if (Ti.App.Properties.getBool('forceImages', false)) {
+				file.deleteFile();
+			}
 			
 			if (file.exists()) {
 				var image = Ti.UI.createImageView({
@@ -99,7 +110,8 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 					opacity:0,
 					image:file,
 					borderRadius:10,
-					_firstLoad:false
+					_firstLoad:false,
+					_shadow:shadow
 				})
 			} else {
 				var image = Ti.UI.createImageView({
@@ -107,7 +119,8 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 					opacity:0,
 					image:subcategories[i].image,
 					_firstLoad:true,
-					_file:file
+					_file:file,
+					_shadow:shadow
 				});
 			}
 			
@@ -122,6 +135,7 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 					e.source._file.write(thumb);
 				} else {
 					e.source.animate({opacity:1});
+					e.source._shadow.animate({opacity:1});
 				}
 			});
 			
@@ -146,11 +160,9 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 			var separatorBottom = Ti.UI.createView($$.separatorBottom);
 			separatorBottom.backgroundColor = '#5BBB';
 			
-			//if (i > 0) {
-				content.add(separatorTop);
-				content.add(separatorBottom);
-			//}
-			
+			content.add(separatorTop);
+			content.add(separatorBottom);
+			content.add(shadow);
 			content.add(title);
 			content.add(text);
 			content.add(image);

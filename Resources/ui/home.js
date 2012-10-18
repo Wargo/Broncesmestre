@@ -16,7 +16,8 @@ module.exports = function() {
 	getData(setData);
 	
 	var win = Ti.UI.createWindow({
-		backgroundColor:Ti.UI.iOS.COLOR_VIEW_FLIPSIDE_BACKGROUND, // OSCURO
+		backgroundColor:'#FFF'
+		//backgroundColor:Ti.UI.iOS.COLOR_VIEW_FLIPSIDE_BACKGROUND, // OSCURO
 		//backgroundColor:Ti.UI.iOS.COLOR_GROUP_TABLEVIEW_BACKGROUND, // NEGRO
 		//backgroundColor:Ti.UI.iOS.COLOR_SCROLLVIEW_BACKGROUND, // CLARO
 		//backgroundColor:Ti.UI.iOS.COLOR_UNDER_PAGE_BACKGROUND, // MUY CLARO
@@ -24,7 +25,9 @@ module.exports = function() {
 	});
 	
 	var auxView = Ti.UI.createView({
-		backgroundColor:'#1FFF',
+		//backgroundColor:'#1FFF',
+		opacity:0.9,
+		backgroundColor:Ti.UI.iOS.COLOR_VIEW_FLIPSIDE_BACKGROUND
 	});
 	
 	win.add(auxView);
