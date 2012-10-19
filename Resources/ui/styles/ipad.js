@@ -70,7 +70,8 @@ module.exports = {
 	
 	tableHeader: {
 		font:{fontSize:18, fontFamily:font, fontWeight:'bold'},
-		color:'#FFF'
+		color:'#FFF',
+		height:30
 	}
 	
 }

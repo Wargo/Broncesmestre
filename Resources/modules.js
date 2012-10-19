@@ -20,6 +20,7 @@ module.exports = {
 	menu: '/ui/elements/menu',
 	config: '/ui/elements/config',
 	amplify: '/ui/elements/amplify',
+	gallery: '/ui/elements/gallery',
 	
 	/*
 	 * BBDD

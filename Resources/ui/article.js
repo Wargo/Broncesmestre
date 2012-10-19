@@ -3,6 +3,10 @@ var Mods = require('/modules');
 
 var $$ = require(Mods.styles);
 
+//var MyAmplify = require(Mods.amplify);
+
+var MyGallery = require(Mods.gallery);
+
 module.exports = function(article) {
 	
 	var article = new Object();
@@ -70,19 +74,24 @@ module.exports = function(article) {
 		
 	var images = Ti.UI.createScrollView($$.articleImages);
 	
-	var MyAmplify = require(Mods.amplify);
-
+	var imagesGallery = [];
+	
 	for (i in article.images) {
 		var image = Ti.UI.createImageView({
 			image:article.images[i].url,
-			_big:article.images[i].big,
-			right:10
+			right:10,
+			//_big:article.images[i].big,
+			_i:i
 		});
+		
+		imagesGallery.push(article.images[i].big);
+		
 		//images.addView(image);
 		images.add(image);
 		
 		image.addEventListener('singletap', function(e) {
-			MyAmplify(e.source._big);
+			//MyAmplify(e.source._big);
+			MyGallery(imagesGallery, e.source._i);
 		});
 	}
 	
@@ -90,8 +99,8 @@ module.exports = function(article) {
 		image:article.image,
 		top:280,
 		left:20,
-		width:240,
-		height:150
+		width:170,
+		height:170
 	});
 	
 	/*
@@ -131,13 +140,20 @@ module.exports = function(article) {
 		
 		var miniRow = Ti.UI.createTableViewRow({
 			backgroundColor:'#EEE',
-			selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
+			selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE,
+			height:40
 		});
 		
 		miniRow.add(Ti.UI.createView({
 			height:1,
 			top:0,
-			backgroundColor:'#AAA'
+			backgroundColor:'#8FFF'
+		}));
+		
+		miniRow.add(Ti.UI.createView({
+			height:1,
+			bottom:0,
+			backgroundColor:'#5BBB'
 		}));
 		
 		var c = Ti.UI.createLabel($$.text)
@@ -171,7 +187,7 @@ module.exports = function(article) {
 	var miniTableView2 = Ti.UI.createTableView({
 		left:20,
 		right:20,
-		top:450,
+		top:480,
 		separatorStyle:Ti.UI.iPhone.TableViewSeparatorStyle.NONE
 	});
 	
@@ -205,13 +221,20 @@ module.exports = function(article) {
 	for (i in article.variant) {
 		var miniRow = Ti.UI.createTableViewRow({
 			backgroundColor:'#EEE',
-			selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
+			selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE,
+			height:50
 		});
 		
 		miniRow.add(Ti.UI.createView({
 			height:1,
 			top:0,
-			backgroundColor:'#AAA'
+			backgroundColor:'#8FFF'
+		}));
+		
+		miniRow.add(Ti.UI.createView({
+			height:1,
+			bottom:0,
+			backgroundColor:'#5BBB'
 		}));
 		
 		var c = Ti.UI.createLabel($$.text)
