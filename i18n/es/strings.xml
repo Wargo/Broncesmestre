@@ -7,4 +7,8 @@
 	<string name="delete">Borrar datos</string>
 	<string name="deletedTitle">Datos borrados</string>
 	<string name="deletedText">Los datos han sido borrados, reinicie la aplicación para obtener los nuevos datos</string>
+	<string name="ref">Referencia</string>
+	<string name="finish">Acabado</string>
+	<string name="price">Precio</string>
+	<string name="variant">Variante</string>
 </resources>

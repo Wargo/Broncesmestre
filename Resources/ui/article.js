@@ -7,12 +7,29 @@ module.exports = function(article) {
 	
 	var article = new Object();
 	
-	article.title = 'Modelo 120500 - Pomito de latón Modelo Sol';
-	article.text = '120500.000.01\r\r120500.000.21\r\r120500.000.45\r\r120500.000.50'
+	article.title = 'Modelo 0A0168 - Juego Manivelas con Placas con Cristal Swarovski';
+	
+	article.standard = [
+		{ref:'0A0168.000.01', img:'http://www.broncesmestre.com/catalogo/acabados/pastilla_listado/01.PNG', imgBig:'http://www.broncesmestre.com/catalogo/articulos/imagen_icono/0A0168.000.01'},
+		{ref:'0A0168.000.62', img:'http://www.broncesmestre.com/catalogo/acabados/pastilla_listado/62.PNG', imgBig:'http://www.broncesmestre.com/catalogo/articulos/imagen_icono/0A0168.000.62'}
+	];
+	
+	article.variant = [
+		{ref:'0A0168.85Y.01', img:'http://www.broncesmestre.com/catalogo/acabados/pastilla_listado/01.PNG', name:'Juego Manivelas con Cristal Swarovski y Bocallave Europeo 85mm', imgBig:'http://www.broncesmestre.com/catalogo/articulos/imagen_icono/0A0168.85Y.01'},
+		{ref:'0A0168.85Y.62', img:'http://www.broncesmestre.com/catalogo/acabados/pastilla_listado/62.PNG', name:'Juego Manivelas con Cristal Swarovski y Bocallave Europeo 85mm'},
+		{ref:'0A0168.90P.62', img:'http://www.broncesmestre.com/catalogo/acabados/pastilla_listado/62.PNG', name:'Juego Manivelas con Cristal Swarovski y Pomo Condena 90mm'},
+		{ref:'0A0168.90Y.62', img:'http://www.broncesmestre.com/catalogo/acabados/pastilla_listado/62.PNG', name:'Juego Manivelas con Cristal Swarovski y Bocallave Europeo 90mm'}
+	];
+	
+	article.image = 'http://www.broncesmestre.com/catalogo/articulos/imagen_icono/0A0168.000.01';
+	
 	article.images = [
-		{url:'http://www.broncesmestre.com/catalogo/articulos/miniatura_ambiente/130513.000.95', big:'http://www.broncesmestre.com/catalogo/articulos/imagen_ambiente/130513.000.95'},
-		{url:'http://www.broncesmestre.com/catalogo/articulos/miniatura_ambiente/120503.000.21', big:'http://www.broncesmestre.com/catalogo/articulos/imagen_ambiente/120503.000.21'},
-		{url:'http://www.broncesmestre.com/catalogo/articulos/miniatura_ambiente/0Z5744.000.50', big:'http://www.broncesmestre.com/catalogo/articulos/imagen_ambiente/0Z5744.000.50'}
+		{url:'http://www.broncesmestre.com/catalogo/articulos/miniatura_ambiente/0A0168.000.62', big:'http://www.broncesmestre.com/catalogo/articulos/imagen_ambiente/0A0168.000.62'},
+		{url:'http://www.broncesmestre.com/catalogo/articulos/miniatura_ambiente/0V0740.N00.01', big:'http://www.broncesmestre.com/catalogo/articulos/imagen_ambiente/0V0740.N00.01'},
+		{url:'http://www.broncesmestre.com/catalogo/articulos/miniatura_ambiente/0R6541.N00.44', big:'http://www.broncesmestre.com/catalogo/articulos/imagen_ambiente/0R6541.N00.44'},
+		{url:'http://www.broncesmestre.com/catalogo/articulos/miniatura_ambiente/0A1641.B00.01', big:'http://www.broncesmestre.com/catalogo/articulos/imagen_ambiente/0A1641.B00.01'},
+		{url:'http://www.broncesmestre.com/catalogo/articulos/miniatura_ambiente/0R6469.000.50', big:'http://www.broncesmestre.com/catalogo/articulos/imagen_ambiente/0R6469.000.50'},
+		{url:'http://www.broncesmestre.com/catalogo/articulos/miniatura_ambiente/0P6248.000.01', big:'http://www.broncesmestre.com/catalogo/articulos/imagen_ambiente/0P6248.000.01'}
 	];
 	
 	var view = Ti.UI.createView({
@@ -49,28 +66,148 @@ module.exports = function(article) {
 	var title = Ti.UI.createLabel($$.articleTitle);
 	title.text = article.title;
 	
-	var text = Ti.UI.createLabel($$.articleText);
-	text.text = article.text;
-	
-	var images = Ti.UI.createScrollableView($$.articleImages);
+	//var images = Ti.UI.createScrollableView($$.articleImages);
+		
+	var images = Ti.UI.createScrollView($$.articleImages);
 	
 	var MyAmplify = require(Mods.amplify);
 
 	for (i in article.images) {
 		var image = Ti.UI.createImageView({
 			image:article.images[i].url,
-			_big:article.images[i].big
+			_big:article.images[i].big,
+			right:10
 		});
-		images.addView(image);
+		//images.addView(image);
+		images.add(image);
 		
 		image.addEventListener('singletap', function(e) {
 			MyAmplify(e.source._big);
 		});
 	}
 	
+	/*
+	 * Referencias estandar
+	 */
+	var miniTableView = Ti.UI.createTableView({
+		right:20,
+		top:20,
+		width:300
+	});
+	
+	var tableHeader = Ti.UI.createTableViewRow({
+		backgroundColor:'#333',
+		selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
+	});
+	
+	var h = Ti.UI.createLabel($$.tableHeader)
+	h.text = L('ref');
+	h.left = 20;
+	tableHeader.add(h);
+	
+	var h = Ti.UI.createLabel($$.tableHeader)
+	h.text = L('finish');
+	h.left = 200;
+	tableHeader.add(h);
+	
+	var h = Ti.UI.createLabel($$.tableHeader)
+	h.text = L('price');
+	h.right = 20;
+	tableHeader.add(h);
+	
+	miniTableView1.appendRow(tableHeader);
+	
+	for (i in article.standard) {
+		var row = Ti.UI.createTableViewRow({
+			backgroundColor:'#EEE',
+			selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
+		});
+		
+		var c = Ti.UI.createLabel($$.text)
+		c.text = article.standard[i].ref;
+		c.left = 20;
+		row.add(c);
+		
+		var c = Ti.UI.createImageView({
+			image:article.standard[i].img
+		});
+		c.left = 200;
+		row.add(c);
+		
+		miniTableView1.appendRow(row);
+	}
+	/*
+	 * Fin referencias estandar
+	 */
+	
+	/*
+	 * Referencias variantes
+	 */
+	var miniTableView2 = Ti.UI.createTableView({
+		left:20,
+		right:20,
+		top:300
+	});
+	
+	var tableHeader = Ti.UI.createTableViewRow({
+		backgroundColor:'#333',
+		selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
+	});
+	
+	var h = Ti.UI.createLabel($$.tableHeader)
+	h.text = L('ref');
+	h.left = 20;
+	tableHeader.add(h);
+	
+	var h = Ti.UI.createLabel($$.tableHeader)
+	h.text = L('variant');
+	h.left = 80;
+	tableHeader.add(h);
+	
+	var h = Ti.UI.createLabel($$.tableHeader)
+	h.text = L('finish');
+	h.left = 200;
+	tableHeader.add(h);
+	
+	var h = Ti.UI.createLabel($$.tableHeader)
+	h.text = L('price');
+	h.right = 20;
+	tableHeader.add(h);
+	
+	miniTableView2.appendRow(tableHeader);
+	
+	for (i in article.standard) {
+		var row = Ti.UI.createTableViewRow({
+			backgroundColor:'#EEE',
+			selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
+		});
+		
+		var c = Ti.UI.createLabel($$.text)
+		c.text = article.standard[i].ref;
+		c.left = 20;
+		row.add(c);
+		
+		var c = Ti.UI.createLabel($$.text)
+		c.text = article.standard[i].name;
+		c.left = 80;
+		row.add(c);
+		
+		var c = Ti.UI.createImageView({
+			image:article.standard[i].img
+		});
+		c.left = 200;
+		row.add(c);
+		
+		miniTableView2.appendRow(row);
+	}
+	/*
+	 * Fin referencias variantes
+	 */
+
 	row.add(images);
 	row.add(title);
-	row.add(text);
+	row.add(miniTableView1);
+	row.add(miniTableView2);
 	
 	var width = 300;
 	var move = true;

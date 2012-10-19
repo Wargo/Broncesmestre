@@ -47,9 +47,12 @@ module.exports = {
 	
 	articleImages: {
 		top:0,
-		right:0,
-		height:300,
-		showPagingControl:true
+		//right:0,
+		height:165,
+		contentWidth:'auto',
+		showHorizontalScrollIndicator:true,
+		layout:'horizontal'
+		//showPagingControl:true
 	},
 	
 	separatorTop: {
@@ -62,6 +65,11 @@ module.exports = {
 		height:1,
 		bottom:0,
 		backgroundColor:'#9000'
+	},
+	
+	tableHeader: {
+		font:{fontSize:20, fontFamily:font, fontWeight:'bold'},
+		color:'#FFF'
 	}
 	
 }
