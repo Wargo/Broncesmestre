@@ -86,13 +86,23 @@ module.exports = function(article) {
 		});
 	}
 	
+	var mainImage = Ti.UI.createImageView({
+		image:article.image,
+		top:280,
+		left:20,
+		width:240,
+		height:150
+	});
+	
 	/*
 	 * Referencias estandar
 	 */
-	var miniTableView = Ti.UI.createTableView({
+	var miniTableView1 = Ti.UI.createTableView({
 		right:20,
-		top:20,
-		width:300
+		top:280,
+		width:500,
+		height:150,
+		separatorStyle:Ti.UI.iPhone.TableViewSeparatorStyle.NONE
 	});
 	
 	var tableHeader = Ti.UI.createTableViewRow({
@@ -107,7 +117,7 @@ module.exports = function(article) {
 	
 	var h = Ti.UI.createLabel($$.tableHeader)
 	h.text = L('finish');
-	h.left = 200;
+	h.left = 230;
 	tableHeader.add(h);
 	
 	var h = Ti.UI.createLabel($$.tableHeader)
@@ -118,23 +128,38 @@ module.exports = function(article) {
 	miniTableView1.appendRow(tableHeader);
 	
 	for (i in article.standard) {
-		var row = Ti.UI.createTableViewRow({
+		
+		var miniRow = Ti.UI.createTableViewRow({
 			backgroundColor:'#EEE',
 			selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
 		});
 		
+		miniRow.add(Ti.UI.createView({
+			height:1,
+			top:0,
+			backgroundColor:'#AAA'
+		}));
+		
 		var c = Ti.UI.createLabel($$.text)
 		c.text = article.standard[i].ref;
 		c.left = 20;
-		row.add(c);
+		miniRow.add(c);
+		
+		if (article.standard[i].imgBig) {
+			c.color = '#6666CC';
+			miniRow._imgBig = article.standard[i].imgBig;
+			miniRow.addEventListener('click', function(e) {
+				mainImage.image = e.row._imgBig;
+			});
+		}
 		
 		var c = Ti.UI.createImageView({
 			image:article.standard[i].img
 		});
-		c.left = 200;
-		row.add(c);
+		c.left = 240;
+		miniRow.add(c);
 		
-		miniTableView1.appendRow(row);
+		miniTableView1.appendRow(miniRow);
 	}
 	/*
 	 * Fin referencias estandar
@@ -146,7 +171,8 @@ module.exports = function(article) {
 	var miniTableView2 = Ti.UI.createTableView({
 		left:20,
 		right:20,
-		top:300
+		top:450,
+		separatorStyle:Ti.UI.iPhone.TableViewSeparatorStyle.NONE
 	});
 	
 	var tableHeader = Ti.UI.createTableViewRow({
@@ -161,12 +187,12 @@ module.exports = function(article) {
 	
 	var h = Ti.UI.createLabel($$.tableHeader)
 	h.text = L('variant');
-	h.left = 80;
+	h.left = 150;
 	tableHeader.add(h);
 	
 	var h = Ti.UI.createLabel($$.tableHeader)
 	h.text = L('finish');
-	h.left = 200;
+	h.left = 500;
 	tableHeader.add(h);
 	
 	var h = Ti.UI.createLabel($$.tableHeader)
@@ -176,29 +202,44 @@ module.exports = function(article) {
 	
 	miniTableView2.appendRow(tableHeader);
 	
-	for (i in article.standard) {
-		var row = Ti.UI.createTableViewRow({
+	for (i in article.variant) {
+		var miniRow = Ti.UI.createTableViewRow({
 			backgroundColor:'#EEE',
 			selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
 		});
 		
-		var c = Ti.UI.createLabel($$.text)
-		c.text = article.standard[i].ref;
-		c.left = 20;
-		row.add(c);
+		miniRow.add(Ti.UI.createView({
+			height:1,
+			top:0,
+			backgroundColor:'#AAA'
+		}));
 		
 		var c = Ti.UI.createLabel($$.text)
-		c.text = article.standard[i].name;
-		c.left = 80;
-		row.add(c);
+		c.text = article.variant[i].ref;
+		c.left = 20;
+		miniRow.add(c);
+		
+		if (article.variant[i].imgBig) {
+			c.color = '#6666CC';
+			miniRow._imgBig = article.variant[i].imgBig;
+			miniRow.addEventListener('click', function(e) {
+				mainImage.image = e.row._imgBig;
+			});
+		}
+		
+		var c = Ti.UI.createLabel($$.text)
+		c.text = article.variant[i].name;
+		c.left = 150;
+		c.width = 350;
+		miniRow.add(c);
 		
 		var c = Ti.UI.createImageView({
-			image:article.standard[i].img
+			image:article.variant[i].img
 		});
-		c.left = 200;
-		row.add(c);
+		c.left = 510;
+		miniRow.add(c);
 		
-		miniTableView2.appendRow(row);
+		miniTableView2.appendRow(miniRow);
 	}
 	/*
 	 * Fin referencias variantes
@@ -206,6 +247,7 @@ module.exports = function(article) {
 
 	row.add(images);
 	row.add(title);
+	row.add(mainImage);
 	row.add(miniTableView1);
 	row.add(miniTableView2);
 	

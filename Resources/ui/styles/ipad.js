@@ -30,9 +30,9 @@ module.exports = {
 	},
 	
 	articleTitle: {
-		font:{fontSize:25, fontFamily:font},
+		font:{fontSize:25, fontFamily:font, fontWeight:'bold'},
 		color:'#333',
-		top:330,
+		top:190,
 		left:20,
 		right:20
 	},
@@ -46,8 +46,9 @@ module.exports = {
 	},
 	
 	articleImages: {
-		top:0,
-		//right:0,
+		top:10,
+		right:10,
+		left:10,
 		height:165,
 		contentWidth:'auto',
 		showHorizontalScrollIndicator:true,
@@ -68,7 +69,7 @@ module.exports = {
 	},
 	
 	tableHeader: {
-		font:{fontSize:20, fontFamily:font, fontWeight:'bold'},
+		font:{fontSize:18, fontFamily:font, fontWeight:'bold'},
 		color:'#FFF'
 	}
 	
