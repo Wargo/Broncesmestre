@@ -82,7 +82,8 @@ module.exports = function(f_callback_back, f_callback_category, f_callback_confi
 	var separatorBottom = Ti.UI.createView($$.separatorBottom);
 	
 	var icon = Ti.UI.createImageView({
-		//image:'ui/images/tools.png',
+		image:'ui/images/m.png',
+		width:50,
 		left:10,
 	});
 	var bronces = Ti.UI.createView($$.homeBtn);
