@@ -16,6 +16,25 @@ module.exports = function() {
 		showVerticalScrollIndicator:true
 	});
 	
+	var shadow = Ti.UI.createView({
+		backgroundColor:'transparent',
+	});
+	
+	view.add(shadow);
+	
+	view.addEventListener('postlayout', function() {
+		if (Ti.App.Properties.getBool('shadows', true)) {
+			shadow.setShadow({
+				shadowOffset:{x:0,y:0},
+				shadowRadius:15,
+				shadowOpacity:0.6
+			});
+		} else {
+			view.borderColor = '#CCC';
+			view.borderWidth = 1;
+		}
+	});
+	
 	var content = Ti.UI.createView({
 		layout:'vertical'
 	});
