@@ -1,11 +1,11 @@
 
-var font = 'Gill Sans'
+var font = 'Gill Sans';
 
 module.exports = {
 	
 	text: {
-		font:{fontSize:18, fontFamily:font},
-		color:'#333'
+		font:{fontSize:16, fontFamily:font},
+		color:'#666'
 	},
 	
 	textMenu: {
@@ -30,10 +30,18 @@ module.exports = {
 	},
 	
 	articleTitle: {
-		font:{fontSize:25, fontFamily:font, fontWeight:'bold'},
-		color:'#333',
-		top:190,
-		left:20,
+		font:{fontSize:20, fontFamily:font, fontWeight:'bold'},
+		color:'#000',
+		top:25,
+		left:175,
+		right:20
+	},
+	
+	articleModel: {
+		font:{fontSize:18, fontFamily:font},
+		color:'#000',
+		top:55,
+		left:175,
 		right:20
 	},
 	
@@ -46,9 +54,9 @@ module.exports = {
 	},
 	
 	articleImages: {
-		top:10,
-		right:10,
-		left:10,
+		top:550,
+		right:30,
+		left:30,
 		height:165,
 		contentWidth:'auto',
 		showHorizontalScrollIndicator:true,
@@ -69,8 +77,8 @@ module.exports = {
 	},
 	
 	tableHeader: {
-		font:{fontSize:18, fontFamily:font, fontWeight:'bold'},
-		color:'#FFF',
+		font:{fontSize:18, fontFamily:font},//, fontWeight:'bold'
+		color:'#333',
 		height:30
 	}
 	

@@ -68,6 +68,11 @@ module.exports = function() {
 			styles.separatorTop.backgroundColor = '#8444';
 			styles.separatorBottom.backgroundColor = '#9000';
 		}
+		Ti.UI.createAlertDialog({
+			title:'Cambios',
+			message:'Los cambios tendrán efecto cuando vuelvas a la home de la aplicación',
+			ok:L('ok')
+		}).show();
 	});
 	
 	view.add(Ti.UI.createLabel({text:'sombras', top:30}));

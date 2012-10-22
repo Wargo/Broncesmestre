@@ -7,6 +7,7 @@ module.exports = {
 	home: '/ui/home',
 	view: '/ui/view',
 	article: '/ui/article',
+	bronces: '/ui/bronces',
 	
 	/*
 	 * Styles

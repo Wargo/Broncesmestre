@@ -77,7 +77,7 @@ module.exports = function() {
 			
 		}
 		
-		var broncesmestre = MySection(0, openCategory);
+		var broncesmestre = MySection(0, openBronces);
 		scrollView.add(broncesmestre);
 		
 		bgImages.push(broncesmestre._image);
@@ -98,16 +98,18 @@ module.exports = function() {
 	var miniMenu = null;
 	var articleWin = null;
 	var configWin = null;
+	var broncesWin = null;
 	
 	var MyView = require(Mods.view);
 	var MyMenu = require(Mods.menu);
 	var MyArticle = require(Mods.article);
 	var MyConfig = require(Mods.config);
+	var MyBronces = require(Mods.bronces);
 	
 	function openCategory(subcategories) {
 		
 		if (!miniMenu) {
-			miniMenu = MyMenu(goHome, openCategory, openConfig);
+			miniMenu = MyMenu(goHome, openCategory, openConfig, openBronces);
 			win.add(miniMenu);
 			miniMenu.animate({opacity:1});
 		}
@@ -119,6 +121,9 @@ module.exports = function() {
 		}
 		if (articleWin) {
 			win.remove(articleWin);
+		}
+		if (broncesWin) {
+			win.remove(broncesWin);
 		}
 		
 		//scrollView.animate({opacity:0});
@@ -133,6 +138,17 @@ module.exports = function() {
 	}
 	
 	function goHome() {
+		if (otherWin) {
+			win.remove(otherWin);
+		}
+		
+		if (articleWin) {
+			win.remove(articleWin);
+		}
+		
+		if (broncesWin) {
+			win.remove(broncesWin);
+		}
 		win.add(scrollView);
 		//scrollView.animate({opacity:1});
 		header.animate({opacity:0.7});
@@ -141,14 +157,6 @@ module.exports = function() {
 		win.remove(miniMenu);		
 		win.remove(newWin);
 		miniMenu = null;
-		
-		if (otherWin) {
-			win.remove(otherWin);
-		}
-		
-		if (articleWin) {
-			win.remove(articleWin);
-		}
 	}
 	
 	function openSubcategory(subcategory) {
@@ -210,6 +218,34 @@ module.exports = function() {
 			modalTransitionStyle:Ti.UI.iPhone.MODAL_TRANSITION_STYLE_CROSS_DISSOLVE
 		});
 		 
+	}
+	
+	function openBronces() {
+		if (!miniMenu) {
+			miniMenu = MyMenu(goHome, openCategory, openConfig);
+			win.add(miniMenu);
+			miniMenu.animate({opacity:1});
+		}
+		if (newWin) {
+			win.remove(newWin);
+		}
+		if (otherWin) {
+			win.remove(otherWin);
+		}
+		if (articleWin) {
+			win.remove(articleWin);
+		}
+		
+		//scrollView.animate({opacity:0});
+		win.remove(scrollView);
+		header.animate({opacity:0});
+		logo.animate({opacity:0});
+		
+		broncesWin = MyBronces();
+		
+		win.add(broncesWin);
+		
+		broncesWin.animate({left:200});
 	}
 	
 	return win;

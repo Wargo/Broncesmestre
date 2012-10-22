@@ -3,7 +3,7 @@ var Mods = require('/modules');
 
 var $$ = require(Mods.styles);
 
-module.exports = function(f_callback_back, f_callback_category, f_callback_config) {
+module.exports = function(f_callback_back, f_callback_category, f_callback_config, f_callback_bronces) {
 	
 	var view = Ti.UI.createView({
 		width:200,
@@ -77,6 +77,29 @@ module.exports = function(f_callback_back, f_callback_category, f_callback_confi
 		f_callback_back();
 	});
 	
+	
+	var separatorTop = Ti.UI.createView($$.separatorTop);
+	var separatorBottom = Ti.UI.createView($$.separatorBottom);
+	
+	var icon = Ti.UI.createImageView({
+		//image:'ui/images/tools.png',
+		left:10,
+	});
+	var bronces = Ti.UI.createView($$.homeBtn);
+	var text = Ti.UI.createLabel($$.textMenu);
+	text.text = 'Broncesmestre';
+	bronces.add(icon);
+	bronces.add(text);
+	bronces.add(separatorTop);
+	bronces.add(separatorBottom);
+	bronces.top = 220;
+	view.add(bronces);
+	
+	bronces.addEventListener('click', function() {
+		f_callback_bronces();
+	});
+	
+	
 	var separatorTop = Ti.UI.createView($$.separatorTop);
 	var separatorBottom = Ti.UI.createView($$.separatorBottom);
 	
@@ -91,7 +114,6 @@ module.exports = function(f_callback_back, f_callback_category, f_callback_confi
 	config.add(text);
 	config.add(separatorTop);
 	config.add(separatorBottom);
-	config.top = 280;
 	view.add(config);
 	
 	config.addEventListener('click', function() {

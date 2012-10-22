@@ -11,7 +11,8 @@ module.exports = function(article) {
 	
 	var article = new Object();
 	
-	article.title = 'Modelo 0A0168 - Juego Manivelas con Placas con Cristal Swarovski';
+	article.model = 'Modelo 0A0168';
+	article.title = 'Juego Manivelas con Placas con Cristal Swarovski';
 	
 	article.standard = [
 		{ref:'0A0168.000.01', img:'http://www.broncesmestre.com/catalogo/acabados/pastilla_listado/01.PNG', imgBig:'http://www.broncesmestre.com/catalogo/articulos/imagen_icono/0A0168.000.01'},
@@ -70,6 +71,9 @@ module.exports = function(article) {
 	var title = Ti.UI.createLabel($$.articleTitle);
 	title.text = article.title;
 	
+	var model = Ti.UI.createLabel($$.articleModel);
+	model.text = article.model;
+	
 	var loading = Ti.UI.createActivityIndicator({
 		style:Ti.UI.iPhone.ActivityIndicatorStyle.DARK
 	});
@@ -109,10 +113,10 @@ module.exports = function(article) {
 		
 		var mainImage = Ti.UI.createImageView({
 			image:article.image,
-			top:280,
-			left:20,
-			width:170,
-			height:170
+			top:20,
+			left:-20,
+			//width:170,
+			//height:170
 		});
 		
 		/*
@@ -120,14 +124,14 @@ module.exports = function(article) {
 		 */
 		var miniTableView1 = Ti.UI.createTableView({
 			right:20,
-			top:280,
-			width:500,
+			top:90,
+			width:530,
 			height:150,
 			separatorStyle:Ti.UI.iPhone.TableViewSeparatorStyle.NONE
 		});
 		
 		var tableHeader = Ti.UI.createTableViewRow({
-			backgroundColor:'#333',
+			//backgroundColor:'#333',
 			selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
 		});
 		
@@ -138,7 +142,7 @@ module.exports = function(article) {
 		
 		var h = Ti.UI.createLabel($$.tableHeader)
 		h.text = L('finish');
-		h.left = 230;
+		h.left = 240;
 		tableHeader.add(h);
 		
 		var h = Ti.UI.createLabel($$.tableHeader)
@@ -199,12 +203,12 @@ module.exports = function(article) {
 		var miniTableView2 = Ti.UI.createTableView({
 			left:20,
 			right:20,
-			top:480,
+			top:260,
 			separatorStyle:Ti.UI.iPhone.TableViewSeparatorStyle.NONE
 		});
 		
 		var tableHeader = Ti.UI.createTableViewRow({
-			backgroundColor:'#333',
+			//backgroundColor:'#333',
 			selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
 		});
 		
@@ -220,7 +224,7 @@ module.exports = function(article) {
 		
 		var h = Ti.UI.createLabel($$.tableHeader)
 		h.text = L('finish');
-		h.left = 500;
+		h.left = 510;
 		tableHeader.add(h);
 		
 		var h = Ti.UI.createLabel($$.tableHeader)
@@ -280,11 +284,12 @@ module.exports = function(article) {
 		 * Fin referencias variantes
 		 */
 	
-		row.add(images);
-		row.add(title);
 		row.add(mainImage);
+		row.add(title);
+		row.add(model);
 		row.add(miniTableView1);
 		row.add(miniTableView2);
+		row.add(images);
 		
 		var width = 300;
 		var move = true;
