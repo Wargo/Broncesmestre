@@ -222,7 +222,7 @@ module.exports = function() {
 	
 	function openBronces() {
 		if (!miniMenu) {
-			miniMenu = MyMenu(goHome, openCategory, openConfig);
+			miniMenu = MyMenu(goHome, openCategory, openConfig, openBronces);
 			win.add(miniMenu);
 			miniMenu.animate({opacity:1});
 		}
@@ -234,6 +234,9 @@ module.exports = function() {
 		}
 		if (articleWin) {
 			win.remove(articleWin);
+		}
+		if (broncesWin) {
+			win.remove(broncesWin);
 		}
 		
 		//scrollView.animate({opacity:0});
