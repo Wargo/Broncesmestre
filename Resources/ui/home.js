@@ -248,7 +248,7 @@ module.exports = function() {
 		
 		win.add(broncesWin);
 		
-		broncesWin.animate({left:200});
+		broncesWin.animate({left:185});
 	}
 	
 	return win;
