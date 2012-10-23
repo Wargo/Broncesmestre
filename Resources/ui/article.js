@@ -288,30 +288,33 @@ module.exports = function(article) {
 		
 		var moreView = Ti.UI.createView({
 			backgroundColor:'transparent',
-			height:155,
-			width:120,
-			top:-115,
-			right:5,
-			_show:false
+			height:200,
+			width:250,
+			top:-175,
+			right:25,
+			_show:false,
+			zIndex:100
 		});
 		
 		var moreButton = Ti.UI.createView({
-			backgroundColor:'#333',
+			backgroundColor:'#262626',
 			bottom:0,
-			right:5,
+			right:10,
 			borderRadius:5,
-			height:40,
-			width:35
+			height:30,
+			width:50
 		});
-		moreButton.add(Ti.UI.createLabel({text:'+', color:'white'}));
+		var moreButtonText = Ti.UI.createLabel({text:'+', color:'white'});
+		moreButton.add(moreButtonText);
 		
 		var more = Ti.UI.createView({
-			backgroundColor:'#333',
+			backgroundColor:'#262626',
 			top:0,
 			borderRadius:5,
-			height:120,
-			width:120
+			height:175,
+			width:250
 		});
+		more.add(Ti.UI.createImageView({image:'ui/images/menuShare.png', top:5, left:5, right:5, bottom:5}));
 		
 		moreView.add(more);
 		moreView.add(moreButton);
@@ -319,10 +322,12 @@ module.exports = function(article) {
 		moreButton.addEventListener('click', function() {
 			if (moreView._show) {
 				moreView._show = false;
-				moreView.animate({top:-200});
+				moreView.animate({top:-175});
+				moreButtonText.text = '+';
 			} else {
 				moreView._show = true;
 				moreView.animate({top:-5});
+				moreButtonText.text = '-';
 			}
 		});
 		
