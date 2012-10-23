@@ -55,7 +55,7 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 		width:600,
 		//backgroundColor:'#EEE',
 		backgroundColor:'transparent',
-		borderRadius:5
+		borderRadius:10
 	});
 
 /*
