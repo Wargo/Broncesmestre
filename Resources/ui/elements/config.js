@@ -21,7 +21,7 @@ module.exports = function() {
 	
 	var deleteData = Ti.UI.createButton({
 		title:L('delete'),
-		top:20
+		top:30
 	});
 	
 	deleteData.addEventListener('click', function() {
@@ -75,8 +75,8 @@ module.exports = function() {
 		}).show();
 	});
 	
-	view.add(Ti.UI.createLabel({text:'sombras', top:30}));
-	view.add(shadows);
+	//view.add(Ti.UI.createLabel({text:'sombras', top:30}));
+	//view.add(shadows);
 	view.add(Ti.UI.createLabel({text:'Recargar imágenes', top:30}));
 	view.add(forceImages);
 	view.add(Ti.UI.createLabel({text:'Fondo: Oscuro / Claro', top:30}));

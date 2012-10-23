@@ -131,9 +131,9 @@ module.exports = function() {
 		header.animate({opacity:0});
 		logo.animate({opacity:0});
 		
-		newWin = MyView(subcategories, openSubcategory, 200, false, win);
+		newWin = MyView(subcategories, openSubcategory, 185, false, win);
 		win.add(newWin);
-		newWin.animate({left:200});
+		newWin.animate({left:185});
 		
 	}
 	
@@ -179,11 +179,11 @@ module.exports = function() {
 			win.remove(articleWin);
 		}
 		
-		otherWin = MyView(aux, openArticle, 400, true, win);
+		otherWin = MyView(aux, openArticle, 385, true, win);
 		
 		otherWin._parent = newWin;
 		
-		otherWin.animate({left:400});
+		otherWin.animate({left:385});
 		
 		win.add(otherWin);
 	}
@@ -198,8 +198,8 @@ module.exports = function() {
 		
 		articleWin._parent = otherWin;
 		
-		articleWin.animate({left:300});
-		otherWin.animate({left:70});
+		articleWin.animate({left:285});
+		otherWin.animate({left:55});
 		
 		otherWin._canMove = false;
 		

@@ -38,20 +38,22 @@ module.exports = function(article) {
 	];
 	
 	var view = Ti.UI.createView({
-		backgroundColor:'#FFF',
+		backgroundColor:'transparent',
 		left:Ti.Platform.displayCaps.platformWidth - 1,
-		width:724
+		width:754,
+		backgroundImage:'ui/images/articleShadow.png'
 	});
 	
 	var tableView = Ti.UI.createTableView({
-		separatorStyle:Ti.UI.iPhone.TableViewSeparatorStyle.NONE
+		separatorStyle:Ti.UI.iPhone.TableViewSeparatorStyle.NONE,
+		backgroundColor:'transparent'
 	});
 	var row = Ti.UI.createTableViewRow({
 		selectionStyle:Ti.UI.iPhone.TableViewCellSelectionStyle.NONE
 	});
 	
 	tableView.appendRow(row);
-
+	/*
 	view.addEventListener('postlayout', function() {
 		if (!Ti.App._drawShadows) {
 			return;
@@ -67,7 +69,7 @@ module.exports = function(article) {
 			view.borderWidth = 1;
 		}
 	});
-	
+	*/
 	var title = Ti.UI.createLabel($$.articleTitle);
 	title.text = article.title;
 	
@@ -95,7 +97,7 @@ module.exports = function(article) {
 		for (i in article.images) {
 			var image = Ti.UI.createImageView({
 				image:article.images[i].url,
-				right:10,
+				right:15,
 				//_big:article.images[i].big,
 				_i:i
 			});
@@ -114,7 +116,7 @@ module.exports = function(article) {
 		var mainImage = Ti.UI.createImageView({
 			image:article.image,
 			top:20,
-			left:-20,
+			left:15,
 			//width:170,
 			//height:170
 		});
@@ -123,7 +125,7 @@ module.exports = function(article) {
 		 * Referencias estandar
 		 */
 		var miniTableView1 = Ti.UI.createTableView({
-			right:20,
+			right:30,
 			top:90,
 			width:530,
 			height:150,
@@ -201,8 +203,8 @@ module.exports = function(article) {
 		 * Referencias variantes
 		 */
 		var miniTableView2 = Ti.UI.createTableView({
-			left:20,
-			right:20,
+			left:30,
+			right:30,
 			top:260,
 			separatorStyle:Ti.UI.iPhone.TableViewSeparatorStyle.NONE
 		});
@@ -291,7 +293,7 @@ module.exports = function(article) {
 		row.add(miniTableView2);
 		row.add(images);
 		
-		var width = 300;
+		var width = 285;
 		var move = true;
 		var init = null;
 		var left = null;
@@ -310,7 +312,7 @@ module.exports = function(article) {
 					view.animate({left:1000, opacity:0}, function() {
 						view.parent.remove(view);
 					});
-					view._parent.animate({left:400});
+					view._parent.animate({left:385});
 					view._parent._canMove = true;
 					for (x in view._parent._rows) {
 						view._parent._rows[x].backgroundColor = 'transparent';

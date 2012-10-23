@@ -33,7 +33,7 @@ module.exports = {
 		font:{fontSize:20, fontFamily:font, fontWeight:'bold'},
 		color:'#000',
 		top:25,
-		left:175,
+		left:200,
 		right:20
 	},
 	
@@ -41,7 +41,7 @@ module.exports = {
 		font:{fontSize:18, fontFamily:font},
 		color:'#000',
 		top:55,
-		left:175,
+		left:200,
 		right:20
 	},
 	
@@ -55,8 +55,8 @@ module.exports = {
 	
 	articleImages: {
 		top:550,
-		right:30,
-		left:30,
+		right:40,
+		left:40,
 		height:165,
 		contentWidth:'auto',
 		showHorizontalScrollIndicator:true,

@@ -10,13 +10,20 @@ require('ti.viewshadow');
 module.exports = function(subcategories, f_callback, width, move, win) {
 	
 	var view = Ti.UI.createView({
-		backgroundColor:'#FFF',
+		//backgroundColor:'#FFF',
+		backgroundColor:'transparent',
 		left:Ti.Platform.displayCaps.platformWidth - 1,
-		width:600,
+		width:630,
 		borderRadius:5,
 		_itsMe:true,
 		_canMove:true
 	});
+	
+	var shadow = Ti.UI.createView({
+		backgroundImage:'ui/images/bigShadow.png'
+	});
+	
+	view.add(shadow);
 	
 	var loader = Ti.UI.createActivityIndicator({
 		style:Ti.UI.iPhone.ActivityIndicatorStyle.DARK,
@@ -25,7 +32,7 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 	
 	view.add(loader);
 	loader.show();
-	
+	/*
 	view.addEventListener('postlayout', function() {
 		if (!Ti.App._drawShadows) {
 			return;
@@ -41,11 +48,13 @@ module.exports = function(subcategories, f_callback, width, move, win) {
 			view.borderWidth = 1;
 		}
 	});
+	*/
 	
 	var tableView = Ti.UI.createTableView({
 		separatorStyle:Ti.UI.iPhone.TableViewSeparatorStyle.NONE,
 		width:600,
-		backgroundColor:'#EEE',
+		//backgroundColor:'#EEE',
+		backgroundColor:'transparent',
 		borderRadius:5
 	});
 
