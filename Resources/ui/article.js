@@ -285,6 +285,48 @@ module.exports = function(article) {
 		/*
 		 * Fin referencias variantes
 		 */
+		
+		var moreView = Ti.UI.createView({
+			backgroundColor:'transparent',
+			height:155,
+			width:120,
+			top:-115,
+			right:5,
+			_show:false
+		});
+		
+		var moreButton = Ti.UI.createView({
+			backgroundColor:'#333',
+			bottom:0,
+			right:5,
+			borderRadius:5,
+			height:40,
+			width:35
+		});
+		moreButton.add(Ti.UI.createLabel({text:'+', color:'white'}));
+		
+		var more = Ti.UI.createView({
+			backgroundColor:'#333',
+			top:0,
+			borderRadius:5,
+			height:120,
+			width:120
+		});
+		
+		moreView.add(more);
+		moreView.add(moreButton);
+		
+		moreButton.addEventListener('click', function() {
+			if (moreView._show) {
+				moreView._show = false;
+				moreView.animate({top:-200});
+			} else {
+				moreView._show = true;
+				moreView.animate({top:-5});
+			}
+		});
+		
+		row.add(moreView);
 	
 		row.add(mainImage);
 		row.add(title);
